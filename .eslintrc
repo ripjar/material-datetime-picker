@@ -1,0 +1,9 @@
+{
+  "extends": "airbnb/base",
+  "root": true,
+  rules: {
+    "comma-dangle": [2, "never"],
+    "no-console": 0,
+    "func-names": 0
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <link rel="stylesheet" href="../dist/css/datepicker.css">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .c-btn {
+      font-size: 14px;
+      text-transform: capitalize;
+      font-weight: 600;
+      display: inline-block;
+      line-height: 36px;
+      cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+      min-width: 88px;
+      height: 36px;
+      margin: 10px 8px;
+      padding: 0 8px;
+      text-align: center;
+      letter-spacing: .5px;
+      border-radius: 2px;
+      background: #F1F1F1;
+      color: #393939;
+      transition: background 200ms ease-in-out;
+      box-shadow: 0 3.08696px 5.82609px 0 rgba(0, 0, 0, 0.16174), 0 3.65217px 12.91304px 0 rgba(0, 0, 0, 0.12435);
+    }
+
+    .c-btn--flat {
+      background: transparent;
+      margin: 10px 8px;
+      min-width: 52px;
+    }
+
+    .c-btn:hover {
+      background: rgba(153, 153, 153, 0.2);
+      color: #393939;
+    }
+
+    .c-btn:active {
+      box-shadow: 0 9.6087px 10.78261px 0 rgba(0, 0, 0, 0.17217), 0 13.56522px 30.3913px 0 rgba(0, 0, 0, 0.15043);
+    }
+
+    .c-btn--flat, .c-btn--flat:hover, .c-btn--flat:active {
+      box-shadow: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <a class="c-btn c-datepicker-btn">
+    <span class="material-icon">calender</span>
+  </a>
+
+  <script src="../dist/js/datepicker.js" charset="utf-8"></script>
+
+  <script>
+
+    const el = document.querySelectorAll('.c-datepicker-btn')[0];
+    const picker = new MaterialDatePicker(el, {
+    });
+
+    el.addEventListener('click', () => {
+      picker.open();
+    });
+
+  </script>
+</body>
+</html>

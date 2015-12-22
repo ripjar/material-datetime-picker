@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "public/javascript/lib",
+    "public/javascript/build",
+    "public/javascript/main.templates.js"
+  ]
+}
