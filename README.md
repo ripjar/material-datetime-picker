@@ -1,7 +1,7 @@
 Material Datetime Picker
 ===
 
-![Status][status]
+[![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker)
 
 A take on the material design date picker modal, built for the web.
 
