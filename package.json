@@ -11,6 +11,10 @@
     "clean": "rm -r dist/*",
     "test": "eslint lib/js"
   },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ripjar/material-datetime-picker.git"
+  },
   "browserify": {
     "debug": true,
     "transform": [
