@@ -63,18 +63,18 @@
     <span class="material-icon">calender</span>
   </a>
 
-  <script src="../dist/js/datepicker.js" charset="utf-8"></script>
+  <script src="../dist/js/datepicker.standalone.js" charset="utf-8"></script>
 
   <script>
 
-    const el = document.querySelectorAll('.c-datepicker-btn')[0];
-    const picker = new MaterialDatePicker(el, {
-    });
+    const picker = new MaterialDatePicker({})
+      .on('data', (d) => console.log(d));
 
+    const el = document.querySelector('.c-datepicker-btn');
     el.addEventListener('click', () => {
       picker.open();
     });
 
-  </script>
+</script>
 </body>
 </html>

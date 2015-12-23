@@ -6,7 +6,7 @@
   "scripts": {
     "build:watch": "watch 'npm run build' ./lib",
     "build:css": "sass lib/scss/picker.scss dist/css/datepicker.css",
-    "build:js": "browserify -d ./datetime-picker.js > dist/js/datepicker.js",
+    "build:js": "browserify -d ./datetime-picker.js > dist/js/datepicker.standalone.js",
     "build": "mkdir -p dist/{js,css} && npm run build:css && npm run build:js",
     "clean": "rm -r dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
