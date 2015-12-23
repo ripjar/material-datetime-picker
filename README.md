@@ -93,7 +93,7 @@ All options are optional, including the `el`.
     //  the default value of the picker
     default: moment(),
     // the container to append the picker
-    container: document.body,
+    container: document.body,    
     // cosmetic classes that can be overriden
     // mostly used for styling the calendar
     styles: {
@@ -118,7 +118,9 @@ All options are optional, including the `el`.
         timeList: 'c-datepicker__time-list',
         timeOption: 'c-datepicker__time-option',
         clockNum: 'c-datepicker__clock__num'
-    }        
+    },
+    // date range to allow (see rome validator factories)
+    dateValidator: null       
 }
 ```
 
