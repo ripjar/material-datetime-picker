@@ -1,7 +1,7 @@
-Material Datetime Picker
-===
+# Material Datetime Picker
 
-[![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker)
+[![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker) 
+[![npm][npm]](https://img.shields.io/npm/v/material-datetime-picker.svg)
 
 A take on the material design date picker modal, built for the web.
 
@@ -115,3 +115,4 @@ MIT
 [date]: https://github.com/ripjar/material-datepicker/raw/master/demo/date.png "Date select image"
 [time]: https://github.com/ripjar/material-datepicker/raw/master/demo/time.png "Time select image"
 [status]: https://api.travis-ci.org/ripjar/material-datetime-picker.svg "Build Status"
+[npm]: https://www.npmjs.com/package/material-datetime-picker "npm module"
