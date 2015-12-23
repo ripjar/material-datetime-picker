@@ -1,6 +1,8 @@
 Material Datetime Picker
 ===
 
+![Status][status]
+
 A take on the material design date picker modal, built for the web.
 
 Works well with Materialize, or standalone.
@@ -112,3 +114,4 @@ MIT
 
 [date]: https://github.com/ripjar/material-datepicker/raw/master/demo/date.png "Date select image"
 [time]: https://github.com/ripjar/material-datepicker/raw/master/demo/time.png "Time select image"
+[status]: https://api.travis-ci.org/ripjar/material-datetime-picker.svg "Build Status"
