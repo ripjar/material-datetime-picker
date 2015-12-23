@@ -68,7 +68,7 @@
   <script>
 
     const picker = new MaterialDatePicker({})
-      .on('data', (d) => console.log(d));
+      .on('submit', (d) => console.log(d));
 
     const el = document.querySelector('.c-datepicker-btn');
     el.addEventListener('click', () => {
