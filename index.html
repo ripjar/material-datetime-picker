@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Material-datetime-picker by ripjar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Material-datetime-picker</h1>
+      <h2 class="project-tagline">A material design date-time picker </h2>
+      <a href="https://github.com/ripjar/material-datetime-picker" class="btn">View on GitHub</a>
+      <a href="https://github.com/ripjar/material-datetime-picker/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ripjar/material-datetime-picker/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="material-datetime-picker" class="anchor" href="#material-datetime-picker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Material Datetime Picker</h1>
+
+<p><a href="https://travis-ci.org/ripjar/material-datetime-picker"><img src="https://api.travis-ci.org/ripjar/material-datetime-picker.svg" alt="Status" title="Build Status"></a> 
+<a href="https://www.npmjs.com/package/material-datetime-picker"><img src="https://img.shields.io/npm/v/material-datetime-picker.svg" alt="Package" title="Package"></a></p>
+
+<p>A take on the material design date picker modal, built for the web.</p>
+
+<p>Works well with Materialize, or standalone.</p>
+
+<p><img src="https://github.com/ripjar/material-datepicker/raw/master/demo/date.png" alt="Time" title="Date select image"> <img src="https://github.com/ripjar/material-datepicker/raw/master/demo/time.png" alt="Time" title="Time select image"></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>npm install material-datepicker
+</code></pre>
+
+<h4>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h4>
+
+<p>The picker depends on Google's Material Design icons (packaged with Materialize), or included in the <code>head</code> of the document;</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://fonts.googleapis.com/icon?family=Material+Icons<span class="pl-pds">"</span></span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span>&gt;</pre></div>
+
+<hr>
+
+<p>For best results also include Google's Material Font <code>Roboto</code>;</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>https://fonts.googleapis.com/css?family=Roboto<span class="pl-pds">'</span></span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">'</span>stylesheet<span class="pl-pds">'</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/css<span class="pl-pds">'</span></span>&gt;</pre></div>
+
+<hr>
+
+<p><code>Rome.js</code> and <code>moment</code> are required by the picker to handle date and time. </p>
+
+<p>It is recommended to use the picker as an ES6 module using <code>import</code> or <code>require</code> (documented below). With this method the script will import it's own dependencies as required. </p>
+
+<p>Alternatively, there is a packaged script <code>/dist/js/datepicker.standalone.min.js</code>, which will include dependencies alongside the library code.</p>
+
+<p>To include them yourself you can also use the dependency free version <code>/dist/js/datepicker.min.js</code>.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="manual-recommended" class="anchor" href="#manual-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual (recommended)</h3>
+
+<p>The picker can be instantiated and interacted with manally;</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">MaterialDateTimePicker</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>material-datetime-picker<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">const</span> <span class="pl-c1">picker</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MaterialDateTimePicker</span>()
+    .<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>submit<span class="pl-pds">'</span></span>, (<span class="pl-smi">val</span>) <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">`</span>data: <span class="pl-s1"><span class="pl-pse">${</span>val<span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>))
+    .<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>open<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>opened<span class="pl-pds">'</span></span>))
+    .<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>close<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>closed<span class="pl-pds">'</span></span>));
+
+<span class="pl-smi">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.c-datepicker-btn<span class="pl-pds">'</span></span>)
+    .<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> <span class="pl-smi">picker</span>.<span class="pl-c1">open</span>());        </pre></div>
+
+<hr>
+
+<h3>
+<a id="as-form-input" class="anchor" href="#as-form-input" aria-hidden="true"><span class="octicon octicon-link"></span></a>As form input</h3>
+
+<p>Alternatively, the picker can be attached to any element. Any events generated by the picker will be fired on this element. If an input element is chosen, the datepicker will open on focus by default, and populate the input with the chosen value.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">MaterialDateTimePicker</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>material-datetime-picker<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">const</span> <span class="pl-c1">element</span> <span class="pl-k">=</span> <span class="pl-smi">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.c-datepicker-input<span class="pl-pds">'</span></span>);
+<span class="pl-k">const</span> <span class="pl-c1">picker</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MaterialDateTimePicker</span>({
+    el<span class="pl-k">:</span> element
+    openedBy<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>focus<span class="pl-pds">'</span></span>
+});</pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<p>All options are optional, including the <code>el</code>.</p>
+
+<div class="highlight highlight-source-js"><pre>{
+    <span class="pl-c">// element to attach the datepicker. this element will receive </span>
+    <span class="pl-c">// events when the data changes. If an input element, will be </span>
+    <span class="pl-c">// populated with formatted date and time chosen</span>
+    el<span class="pl-k">:</span> <span class="pl-smi">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.c-datepicker-btn<span class="pl-pds">'</span></span>),
+    <span class="pl-c">// if `el` is set, `openedBy` is the event on `el` that will</span>
+    <span class="pl-c">// open the picker, eg. `click` or `focus`</span>
+    openedBy<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>focus<span class="pl-pds">'</span></span>,
+    <span class="pl-c">// if `el` is set, the format used to display the datetime in the input, // or set as a data attribute</span>
+    format<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>dd/MM/YY<span class="pl-pds">'</span></span>, 
+    <span class="pl-c">//  the default value of the picker</span>
+    <span class="pl-k">default</span><span class="pl-k">:</span> <span class="pl-en">moment</span>(),
+    <span class="pl-c">// the container to append the picker</span>
+    container<span class="pl-k">:</span> <span class="pl-smi">document</span>.<span class="pl-c1">body</span>,    
+    <span class="pl-c">// cosmetic classes that can be overriden</span>
+    <span class="pl-c">// mostly used for styling the calendar</span>
+    styles<span class="pl-k">:</span> {
+        scrim<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-scrim<span class="pl-pds">'</span></span>,
+        back<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__back<span class="pl-pds">'</span></span>,
+        container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__calendar<span class="pl-pds">'</span></span>,
+        date<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__date<span class="pl-pds">'</span></span>,
+        dayBody<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__days-body<span class="pl-pds">'</span></span>,
+        dayBodyElem<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__day-body<span class="pl-pds">'</span></span>,
+        dayConcealed<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__day--concealed<span class="pl-pds">'</span></span>,
+        dayDisabled<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__day--disabled<span class="pl-pds">'</span></span>,
+        dayHead<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__days-head<span class="pl-pds">'</span></span>,
+        dayHeadElem<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__day-head<span class="pl-pds">'</span></span>,
+        dayRow<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__days-row<span class="pl-pds">'</span></span>,
+        dayTable<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__days<span class="pl-pds">'</span></span>,
+        month<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__month<span class="pl-pds">'</span></span>,
+        next<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__next<span class="pl-pds">'</span></span>,
+        positioned<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker--fixed<span class="pl-pds">'</span></span>,
+        selectedDay<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__day--selected<span class="pl-pds">'</span></span>,
+        selectedTime<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__time--selected<span class="pl-pds">'</span></span>,
+        time<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__time<span class="pl-pds">'</span></span>,
+        timeList<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__time-list<span class="pl-pds">'</span></span>,
+        timeOption<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__time-option<span class="pl-pds">'</span></span>,
+        clockNum<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c-datepicker__clock__num<span class="pl-pds">'</span></span>
+    },
+    <span class="pl-c">// date range to allow (see rome validator factories)</span>
+    dateValidator<span class="pl-k">:</span> <span class="pl-c1">null</span>       
+}</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ripjar/material-datetime-picker">Material-datetime-picker</a> is maintained by <a href="https://github.com/ripjar">ripjar</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
