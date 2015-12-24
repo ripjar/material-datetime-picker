@@ -1,4 +1,7 @@
-# Material Datetime Picker
+# Material Datetime Picker 
+
+[https://ripjar.github.io/material-datetime-picker/](https://ripjar.github.io/material-datetime-picker/)
+
 
 [![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker) 
 [![Package][npm]](https://www.npmjs.com/package/material-datetime-picker)
