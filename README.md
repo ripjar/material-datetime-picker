@@ -71,11 +71,13 @@ The picker is decoupled from any single form element for simplicity. However, it
 ```javascript
 import MaterialDateTimePicker from 'material-datetime-picker';
 
-const element = document.querySelector('.c-datepicker-input');
-const picker = new MaterialDateTimePicker()
+const input = document.querySelector('.c-datepicker-input');
+const picker = new MaterialDatePicker()
     .on('submit', (val) => {
-        element.value = val.format("DD/MM/YYYY")
+      input.value = val.format("DD/MM/YYYY");
     });
+
+input.addEventListener('focus', () => picker.open());      
 ```
 
 ## Options
