@@ -15,7 +15,7 @@ Works well with Materialize, or standalone.
 ## Installation
 
 ```
-npm install material-datepicker
+npm install material-datetime-picker
 ```
 
 #### Dependencies
