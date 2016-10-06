@@ -2,11 +2,12 @@
   "name": "material-datetime-picker",
   "version": "1.0.1",
   "description": "",
-  "main": "datetime-picker.js",
+  "main": "./dist/js/datetime-picker.js",
   "scripts": {
     "build:watch": "watch 'npm run build' ./lib",
     "build:css": "sass lib/scss/picker.scss dist/css/datepicker.css",
-    "build:js": "browserify -d ./datetime-picker.js > dist/js/datepicker.standalone.js",
+    "build:js": "browserify -r rome -r moment > dist/vendor.js && browserify --no-bundle-external -s MaterialDatePicker -d ./datetime-picker.js > dist/js/datepicker.js",
+    "build:js:raw": "browserify  > dist/vendor.js && browserify --no-bundle-external -s MaterialDatePicker -d ./datetime-picker.js > dist/js/datepicker.js",
     "build": "mkdir -p dist/{js,css} && npm run build:css && npm run build:js",
     "clean": "rm -r dist/*",
     "test": "eslint lib/js"
@@ -16,7 +17,6 @@
     "url" : "https://github.com/ripjar/material-datetime-picker.git"
   },
   "browserify": {
-    "debug": true,
     "transform": [
       "babelify",
       "stringify"

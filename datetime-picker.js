@@ -1,2 +1,3 @@
 import MaterialDatePicker from './lib/js/index.js';
-window.MaterialDatePicker = MaterialDatePicker;
+export default MaterialDatePicker;
+// window.MaterialDatePicker = MaterialDatePicker;
