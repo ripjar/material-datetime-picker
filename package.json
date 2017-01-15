@@ -6,9 +6,8 @@
   "module": "dist/material-datetime-picker.mjs",
   "jsnext:main": "dist/material-datetime-picker.mjs",
   "scripts": {
-    "build:css": "node-sass lib/scss/material-datetime-picker.scss -o dist --source-map true",
-    "build:js": "rollup -c",
-    "build:js:watch": "rollup -c -w",
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
     "clean": "rm -r dist/*",
     "lint": "eslint"
   },
@@ -30,6 +29,7 @@
     "node-sass": "^4.3.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-sass": "^0.4.8",
     "rollup-watch": "^3.2.2"
   }
 }
