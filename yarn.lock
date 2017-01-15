@@ -668,12 +668,12 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
-contra@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/contra/-/contra-1.9.1.tgz#60e498274b3d2d332896d60f82900aefa2ecac8c"
+contra@^1.9.4:
+  version "1.9.4"
+  resolved "https://registry.yarnpkg.com/contra/-/contra-1.9.4.tgz#f53bde42d7e5b5985cae4d99a8d610526de8f28d"
   dependencies:
     atoa "1.0.0"
-    ticky "1.0.0"
+    ticky "1.0.1"
 
 convert-source-map@^1.1.0:
   version "1.3.0"
@@ -1882,12 +1882,12 @@ rollup@^0.41.4:
   dependencies:
     source-map-support "^0.4.0"
 
-rome@2.1.22:
+"rome@git+ssh://git@github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6":
   version "2.1.22"
-  resolved "https://registry.yarnpkg.com/rome/-/rome-2.1.22.tgz#4bf25318cc0522ae92dd090472ce7a6e0b1f5e02"
+  resolved "git+ssh://git@github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6"
   dependencies:
     bullseye "1.4.6"
-    contra "1.9.1"
+    contra "^1.9.4"
     crossvent "1.5.0"
     moment "^2.8.2"
 
@@ -2084,9 +2084,9 @@ through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
-ticky@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ticky/-/ticky-1.0.0.tgz#e87f38ee0491ea32f62e8f0567ba9638b29f049c"
+ticky@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ticky/-/ticky-1.0.1.tgz#b7cfa71e768f1c9000c497b9151b30947c50e46d"
 
 to-fast-properties@^1.0.1:
   version "1.0.2"
