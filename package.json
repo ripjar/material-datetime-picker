@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "moment": "2.10.6",
-    "rome": "2.1.22"
+    "rome": "git+ssh://git@github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.18.0",
