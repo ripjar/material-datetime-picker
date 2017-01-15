@@ -278,9 +278,15 @@ var DateTimePicker = (function (_Events) {
         return _this5.clickSubmit();
       }, false);
 
-      this.$('.' + this.options.styles.clockNum).forEach(function (el) {
+      this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum).forEach(function (el) {
         el.addEventListener('click', function (e) {
           return _this5.clickClock(e);
+        }, false);
+      });
+
+      this.$('.c-datepicker__clock__minutes .' + this.options.styles.clockNum).forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          return _this5.clickClockMinutes(e);
         }, false);
       });
 
@@ -318,6 +324,14 @@ var DateTimePicker = (function (_Events) {
       }
 
       this.value.hour(number);
+      this.setTime(this.value);
+      return this;
+    }
+  }, {
+    key: 'clickClockMinutes',
+    value: function clickClockMinutes(e) {
+      var number = parseInt(e.currentTarget.getAttribute('data-number'), 10);
+      this.value.minute(number);
       this.setTime(this.value);
       return this;
     }
@@ -407,9 +421,11 @@ var DateTimePicker = (function (_Events) {
     value: function setTime(time) {
       var m = (0, _moment2['default'])(time);
       var hour = m.format('HH');
+      var minutes = m.format('mm');
       var hourAsInt = parseInt(hour, 10) % 12;
 
       this.$('.js-date-hours').innerText = hour;
+      this.$('.js-date-minutes').innerText = minutes;
 
       this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '[data-number="' + hourAsInt + '"]').classList.add('.' + this.options.styles.clockNum + '--active');
       this.value.hours(m.hours());
