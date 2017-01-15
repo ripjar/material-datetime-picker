@@ -6,7 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-  <link rel="stylesheet" href="../dist/css/datepicker.css">
+  <link rel="stylesheet" href="../dist/material-datetime-picker.css">
 
   <style>
     body {
@@ -67,11 +67,13 @@
 
 
   <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
-  <script src="../dist/js/datepicker.standalone.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+  <script src="../dist/material-datetime-picker.js" charset="utf-8"></script>
 
   <script>
 
-    var picker = new MaterialDatePicker({})
+    var picker = new MaterialDatetimePicker({})
       .on('submit', function(d) {
         output.innerText = d;
       });
