@@ -4,7 +4,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.54118);
+  background-color: rgba(0, 0, 0, 0.541176);
   opacity: 0;
   transition: 200ms ease opacity;
   will-change: opacity; }
@@ -458,11 +458,13 @@
 
 .c-datepicker__clock--show-minutes .c-datepicker__clock__minutes {
   visibility: visible; }
+
 .c-datepicker__clock--show-minutes .c-datepicker__clock__hours {
   visibility: hidden; }
 
 .c-datepicker__clock--show-hours .c-datepicker__clock__minutes {
   visibility: hidden; }
+
 .c-datepicker__clock--show-hours .c-datepicker__clock__hours {
   visibility: visible; }
 
@@ -495,4 +497,4 @@
       z-index: -1;
       background: rgba(0, 0, 0, 0.05); }
 
-/*# sourceMappingURL=datepicker.css.map */
+/*# sourceMappingURL=material-datetime-picker.css.map */
