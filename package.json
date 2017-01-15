@@ -9,7 +9,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "clean": "rm -r dist/*",
-    "lint": "eslint"
+    "lint": "eslint lib/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "babel-preset-es2015": "^6.18.0",
     "babelrc-rollup": "^3.0.0",
     "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "node-sass": "^4.3.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
