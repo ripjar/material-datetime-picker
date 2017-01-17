@@ -90,10 +90,7 @@ All options are optional, including the `el`.
     // events when the data changes. If an input element, will be 
     // populated with formatted date and time chosen
     el: document.querySelector('.c-datepicker-btn'),
-    // if `el` is set, `openedBy` is the event on `el` that will
-    // open the picker, eg. `click` or `focus`
-    openedBy: 'focus',
-    // if `el` is set, the format used to display the datetime in the input, // or set as a data attribute
+    // if `el` is set, the format used to display the datetime in the input, 
     format: 'dd/MM/YY', 
     //  the default value of the picker
     default: moment(),
