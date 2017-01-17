@@ -2,7 +2,7 @@ import rome from 'rome';
 import moment from 'moment';
 
 var popupTemplate = (function () {
-  return "\n<div class=\"c-datepicker\">\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker--show-time\" type=\"radio\" name=\"date-toggle\" value=\"time\" >\n\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--left  c-datepicker--show-calendar\" type=\"radio\" name=\"date-toggle\" value=\"calendar\" checked>\n\n  <div class=\"c-datepicker__header\">\n    <div class=\"c-datepicker__header-day\">\n      <span class=\"js-day\">Monday</span>\n    </div>\n    <div class=\"c-datepicker__header-date\">\n      <span class=\"c-datepicker__header-date__month js-date-month\">Jan 2015</span>\n      <span class=\"c-datepicker__header-date__day js-date-day\">10th</span>\n      <span class=\"c-datepicker__header-date__time js-date-time\">\n        <span class=\"c-datepicker__header-date__hours js-date-hours\">09</span>:<span class=\"c-datepicker__header-date__minutes js-date-minutes\">00</span>\n      </span>\n    </div>\n  </div>\n\n  <div class=\"c-datepicker__calendar\"></div>\n  <div class=\"c-datepicker__clock\">\n    <div class=\"c-datepicker__clock__am-pm-toggle\">\n      <label class=\"c-datepicker__toggle--checked\">\n        <input checked=\"checked\" class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--am\" type=\"radio\" name=\"time-date-toggle\" value=\"AM\" />\n        AM\n      </label>\n\n      <label>\n        <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--pm\" type=\"radio\" name=\"time-date-toggle\" value=\"PM\" />\n        PM\n      </label>\n    </div>\n\n    <div class=\"c-datepicker__clock__hours\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"3\">3</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"4\">4</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"6\">6</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"7\">7</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"8\">8</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"9\">9</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"11\">11</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">12</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"1\">1</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"2\">2</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n    <div class=\"c-datepicker__clock__minutes\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"15\">15</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"20\">20</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"25\">25</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"30\">30</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"35\">35</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"40\">40</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"45\">45</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"50\">50</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"55\">55</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">0</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-btns\">\n    <a class=\"c-btn c-btn--flat js-cancel\">Cancel</a>\n    <a class=\"c-btn c-btn--flat js-ok\">OK</a>\n  </div>\n</div>\n";
+  return "\n<div class=\"c-datepicker\">\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker--show-time\" type=\"radio\" name=\"date-toggle\" value=\"time\" >\n\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--left  c-datepicker--show-calendar\" type=\"radio\" name=\"date-toggle\" value=\"calendar\" checked>\n\n  <div class=\"c-datepicker__header\">\n    <div class=\"c-datepicker__header-day\">\n      <span class=\"js-day\">Monday</span>\n    </div>\n    <div class=\"c-datepicker__header-date\">\n      <span class=\"c-datepicker__header-date__month js-date-month\"></span>\n      <span class=\"c-datepicker__header-date__day js-date-day\"></span>\n      <span class=\"c-datepicker__header-date__time js-date-time\">\n        <span class=\"c-datepicker__header-date__hours js-date-hours\">09</span>:<span class=\"c-datepicker__header-date__minutes js-date-minutes\">00</span>\n      </span>\n    </div>\n  </div>\n\n  <div class=\"c-datepicker__calendar\"></div>\n  <div class=\"c-datepicker__clock\">\n    <div class=\"c-datepicker__clock__am-pm-toggle\">\n      <label class=\"c-datepicker__toggle--checked\">\n        <input checked=\"checked\" class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--am\" type=\"radio\" name=\"time-date-toggle\" value=\"AM\" />\n        AM\n      </label>\n\n      <label>\n        <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--pm\" type=\"radio\" name=\"time-date-toggle\" value=\"PM\" />\n        PM\n      </label>\n    </div>\n\n    <div class=\"c-datepicker__clock__hours\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"3\">3</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"4\">4</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"6\">6</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"7\">7</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"8\">8</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"9\">9</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"11\">11</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">12</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"1\">1</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"2\">2</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n    <div class=\"c-datepicker__clock__minutes\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"15\">15</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"20\">20</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"25\">25</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"30\">30</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"35\">35</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"40\">40</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"45\">45</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"50\">50</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"55\">55</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">0</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-btns\">\n    <a class=\"c-btn c-btn--flat js-cancel\">Cancel</a>\n    <a class=\"c-btn c-btn--flat js-ok\">OK</a>\n  </div>\n</div>\n";
 });
 
 var scrimTemplate = (function (_ref) {
@@ -162,11 +162,10 @@ var Events = function () {
   }, {
     key: 'once',
     value: function once(eventName, fn, scope) {
-      var _arguments = arguments,
-          _this2 = this;
+      var _this2 = this;
 
       var func = function func() {
-        fn.call.apply(fn, [scope].concat(Array.prototype.slice.call(_arguments)));
+        fn.call(scope, eventName, fn, scope);
         _this2.off(eventName, func);
       };
       return this.on(eventName, func, scope);
@@ -205,7 +204,7 @@ var defaults$$1 = function defaults$$1() {
       clockNum: prefix + '__clock__num'
     },
     // format to display in the input, or set on the element
-    format: 'dd/MM/YY',
+    format: 'DD/MM/YY',
     // the container to append the picker
     container: document.body,
     // allow any dates
@@ -225,7 +224,6 @@ var DateTimePicker = function (_Events) {
     var styles = Object.assign(defaults$$1().styles, options.styles);
     _this.options = Object.assign(defaults$$1(), options);
     _this.options.styles = styles;
-    _this.value = _this.options.default;
 
     // listen to any event
     _this.on('*', function (evtName, evtData) {
@@ -251,7 +249,8 @@ var DateTimePicker = function (_Events) {
       return rome(container, {
         styles: this.options.styles,
         time: false,
-        dateValidator: validator
+        dateValidator: validator,
+        initialValue: this.value
       }).on('data', function (value) {
         return _this2.set(value);
       });
@@ -270,9 +269,11 @@ var DateTimePicker = function (_Events) {
       this.amToggleEl = this.$('.c-datepicker__clock--am');
       this.pmToggleEl = this.$('.c-datepicker__clock--pm');
 
-      this.set(this.value || this.options.default, {
-        silent: true
-      });
+      if (!this.value) {
+        this.value = moment(this.options.default);
+      }
+
+      this.setDate(this.value);
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
       this._show();
     }
@@ -393,11 +394,10 @@ var DateTimePicker = function (_Events) {
     key: 'set',
     value: function set$$1(value, opts) {
       var m = moment(value);
+
       // maintain a list of change events to fire all at once later
       var evts = [];
-      if (!this.value || this.value && (m.date() !== this.value.date() || m.month() !== this.value.month() || m.year() !== this.value.year())) {
-        // if the date has not been set yet, or has changed then set it
-        // and fire a change:date event
+      if (m.date() !== this.value.date() || m.month() !== this.value.month() || m.year() !== this.value.year()) {
         this.setDate(m);
         evts.push('change:date');
       } else {
