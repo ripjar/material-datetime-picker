@@ -96,7 +96,8 @@ All options are optional, including the `el`.
     format: 'DD/MM/YY', 
     //  the default value of the picker
     default: moment(),
-    // the container to append the picker
+    // the container to append the picker. If you change this, you need to make
+    // sure your element has a z-index > 0 so that it displays in front of the scrim.
     container: document.body,    
     // cosmetic classes that can be overriden
     // mostly used for styling the calendar
