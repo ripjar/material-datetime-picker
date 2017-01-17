@@ -86,12 +86,14 @@ All options are optional, including the `el`.
 
 ```javascript
 {
-    // element to attach the datepicker. this element will receive 
+    // DOM Element to attach the datepicker. This element will receive 
     // events when the data changes. If an input element, will be 
-    // populated with formatted date and time chosen
+    // populated with formatted date and time chosen.
+    // `el` must be a DOM Element object. Selectpr strings or wrappers
+    // like a jQuery selection are not supported.
     el: document.querySelector('.c-datepicker-btn'),
     // if `el` is set, the format used to display the datetime in the input, 
-    format: 'dd/MM/YY', 
+    format: 'DD/MM/YY', 
     //  the default value of the picker
     default: moment(),
     // the container to append the picker
