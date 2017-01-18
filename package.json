@@ -9,7 +9,8 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "clean": "rm -r dist/*",
-    "lint": "eslint lib/**/*.js"
+    "lint": "eslint lib/**/*.js",
+    "test": "nightwatch"
   },
   "repository": {
     "type": "git",
@@ -28,10 +29,13 @@
     "eslint": "^3.13.1",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
+    "nightwatch": "^0.9.12",
     "node-sass": "^4.3.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-sass": "^0.4.8",
-    "rollup-watch": "^3.2.2"
+    "rollup-watch": "^3.2.2",
+    "selenium-standalone": "^5.11.0",
+    "selenium-standalone-jar": "2.53.1"
   }
 }

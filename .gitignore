@@ -2,3 +2,5 @@
 node_modules
 .sass-cache
 .vscode
+*.log
+tests_output
