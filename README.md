@@ -1,14 +1,11 @@
 # Material Datetime Picker 
 
-[https://ripjar.github.io/material-datetime-picker/](https://ripjar.github.io/material-datetime-picker/)
+A Material Design date/time picker modal, built for the web. Works well with Materialize, or standalone.
 
+[https://ripjar.github.io/material-datetime-picker/](https://ripjar.github.io/material-datetime-picker/)
 
 [![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker) 
 [![Package][npm]](https://www.npmjs.com/package/material-datetime-picker)
-
-A take on the material design date picker modal, built for the web.
-
-Works well with Materialize, or standalone.
 
 ![Time][date] ![Time][time]
 
@@ -36,13 +33,14 @@ For best results also include Google's Material Font `Roboto`;
 
 ---
 
-`Rome.js` and `moment` are required by the picker to handle date and time. 
+If you want to use this project as a standalone `<script>`, you can use  `dist/material-datetime-picker.js`. You'll need to include `moment.js` and `rome.js` as well:
 
-It is recommended to use the picker as an ES6 module using `import` or `require` (documented below). With this method the script will import it's own dependencies as required. 
 
-Alternatively, there is a packaged script `/dist/js/datepicker.standalone.min.js`, which will include dependencies alongside the library code.
-
-To include them yourself you can also use the dependency free version `/dist/js/datepicker.min.js`.
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+<script src="material-datetime-picker.js" charset="utf-8"></script>
+```
 
 ## Usage
 
