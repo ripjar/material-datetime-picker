@@ -337,7 +337,7 @@ $primary: #00bcd4;
       }
 
       &:nth-of-type(#{$i}) {
-        &.c-datepicker__clock__num--active {
+        &.c-datepicker__clock__num--active:not(.hide-hand) {
           ~ .c-datepicker__clock-hands {
             $handRot: $rot + 270;
             transform: translate(-50%, -50%) rotate(#{$handRot}deg);
@@ -417,7 +417,7 @@ $primary: #00bcd4;
 .c-datepicker__day-body, .c-datepicker__clock__num {
   @extend .u-hover-ball-effect;
 
-  &--active {
+  &--active:not(.hide-hand) {
     color: white;
     &:before {
       background: $primary;
