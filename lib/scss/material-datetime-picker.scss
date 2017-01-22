@@ -343,7 +343,7 @@ $primary: #00bcd4;
             transform: translate(-50%, -50%) rotate(#{$handRot}deg);
             .c-datepicker__hour-hand {
               opacity: 1;
-              background: rgba(0,0,0,0.05);
+              background: $primary;
             }
           }
         }
@@ -418,8 +418,9 @@ $primary: #00bcd4;
   @extend .u-hover-ball-effect;
 
   &--active {
+    color: white;
     &:before {
-      background: rgba(0, 0, 0, 0.05);
+      background: $primary;
       width: 35px;
       height: 35px;
       z-index: -1;
