@@ -327,6 +327,7 @@ $primary: #00bcd4;
     width:  $item-size;
     height: $item-size;
     margin: -$half-item;
+    z-index: 98;
 
     $angle: 360 / $nb-items;
     $rot: 0;
@@ -365,12 +366,11 @@ $primary: #00bcd4;
 
 
 .c-datepicker__clock {
-  @include putOnCircle(12, 200px, 36px);
+  @include putOnCircle(12, 200px, 50px);
   font-size: 14px;
-  line-height: 36px;
+  line-height: 50px;
   padding: 160px 0 20px 0;
   margin: 0 auto;
-  position: relative;
 
   &::before {
     content: "";
@@ -456,7 +456,38 @@ $primary: #00bcd4;
 }
 
 .c-datepicker__clock__hours {
+  height: 200px;
+  margin: -69px 0 0 0;
+  width: 200px;
+}
 
+.c-datepicker__mask {
+  &:after {
+    content: ' ';
+    width: 164px;
+    height: 71px;
+    display: block;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    margin-left: -16px;
+  }
+  &:before {
+    content: ' ';
+    width: 75px;
+    height: 158px;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 29px;
+    margin-top: -18px;
+  }
+  width: 133px;
+  height: 132px;
+  position: absolute;
+  top: 123px;
+  left: 35px;
+  z-index: 99;
 }
 
 .c-datepicker__clock--show-minutes {
