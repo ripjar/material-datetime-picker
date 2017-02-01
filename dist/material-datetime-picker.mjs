@@ -369,7 +369,7 @@ var DateTimePicker = function (_Events) {
       }
 
       this.value.hour(number);
-      this.setTime(this.value);
+      this.set(this.value);
       return this;
     }
   }, {
@@ -397,7 +397,7 @@ var DateTimePicker = function (_Events) {
         this.meridiem = 'am';
         this.value.hour(this.value.hour() - 12);
       }
-      this.setTime(this.value);
+      this.set(this.value);
       return this;
     }
   }, {
@@ -407,7 +407,7 @@ var DateTimePicker = function (_Events) {
         this.meridiem = 'pm';
         this.value.hour(this.value.hour() + 12);
       }
-      this.setTime(this.value);
+      this.set(this.value);
       return this;
     }
   }, {
