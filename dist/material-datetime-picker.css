@@ -121,10 +121,10 @@
   .c-datepicker__header-date__time > span {
     display: inline-block; }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__header .c-datepicker__header-date__time {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1; }
 
-.c-datepicker--show-calendar:checked ~ .c-datepicker__header .c-datepicker__header-date__month, .c-datepicker--show-calendar:checked ~ .c-datepicker__header .c-datepicker__header-date__day {
+.c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__month, .c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__day {
   opacity: 1; }
 
 .modal-btns {
@@ -208,7 +208,8 @@
 
 .c-datepicker__toggle {
   top: 170px;
-  width: 23px;
+  width: 36px;
+  height: 30px;
   visibility: hidden;
   opacity: 0.5;
   z-index: 1;
@@ -220,13 +221,13 @@
 .c-datepicker__toggle--left {
   left: 10px; }
 
-.c-datepicker__toggle:checked {
+.c-datepicker__toggle.is-selected {
   opacity: 1; }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__calendar {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__calendar {
   display: none; }
 
-.c-datepicker--show-calendar:checked ~ .c-datepicker__clock {
+.c-datepicker--show-calendar.is-selected ~ .c-datepicker__clock {
   display: none; }
 
 .c-datepicker__clock {
