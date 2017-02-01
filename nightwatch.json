@@ -1,0 +1,19 @@
+{
+  "src_folders": ["test/e2e"],
+  "selenium" : {
+    "start_process" : true,
+    "server_path": "node_modules/selenium-standalone-jar/bin/selenium-server-standalone-2.53.1.jar",
+    "host": "127.0.0.1",
+    "port": 4444
+  },
+
+  "test_settings" : {
+    "default" : {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    }
+  }
+}
