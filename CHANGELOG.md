@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+* Bugfix: fire `change` and `change:time` events when the selected time changes - bf5d62095e9e4faa9b948a3a53fda9898b1d1810
+* Bugfix: do not reset time to 00:00 when clicking on the selected date - bbdc188c5508afed73ad3cb60ec43f2991d3c48f
+
 ## 2.0.1
 * Bugfix: fix active hour indicator - #107 by @CasperLaiTW
 * Bugfix: show the active time when the picker is opened - #107 by @CasperLaiTW
