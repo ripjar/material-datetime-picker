@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+* Bugfix: fix active hour indicator - #107 by @CasperLaiTW
+* Bugfix: show the active time when the picker is opened - #107 by @CasperLaiTW
+
 ## 2.0.0
 
 * Breaking: Updated the build process to use rollup instead of browserify. Change the path to compiled files. - #99
