@@ -280,7 +280,7 @@ var DateTimePicker = function (_Events) {
   createClass(DateTimePicker, [{
     key: 'initializeRome',
     value: function initializeRome(container, validator) {
-      var onData = this.clickDate.bind(this);
+      var onData = this.onChangeDate.bind(this);
 
       return rome(container, {
         styles: this.options.styles,
@@ -408,17 +408,17 @@ var DateTimePicker = function (_Events) {
       return this;
     }
   }, {
-    key: 'clickDate',
-    value: function clickDate(dateString) {
+    key: 'onChangeDate',
+    value: function onChangeDate(dateString) {
       var newValue = moment(this.value);
 
-      var _dateString$split = dateString.split("-"),
+      var _dateString$split = dateString.split('-'),
           _dateString$split2 = slicedToArray(_dateString$split, 3),
           year = _dateString$split2[0],
           month = _dateString$split2[1],
           date = _dateString$split2[2];
 
-      newValue.set({ year: year, month: month, date: date });
+      newValue.set({ year: year, month: month - 1, date: date });
 
       this.set(newValue);
       return this;
@@ -449,7 +449,7 @@ var DateTimePicker = function (_Events) {
         this.meridiem = 'am';
         newValue.hour(newValue.hour() - 12);
       }
-      this.set(this.value);
+      this.set(newValue);
       return this;
     }
   }, {
@@ -491,6 +491,7 @@ var DateTimePicker = function (_Events) {
         this.setTime(m);
         evts.push('change:time');
       }
+
       if (this.options.el) {
         // if there is an element to fire events on
         if (this.options.el.tagName === 'INPUT') {
