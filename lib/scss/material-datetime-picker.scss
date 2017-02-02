@@ -45,6 +45,7 @@ $primary: #00bcd4;
 }
 
 .c-datepicker__header {
+  box-sizing: content-box;
   position: relative;
 }
 
@@ -68,6 +69,10 @@ $primary: #00bcd4;
   background: $primary;
   height: 150px;
   padding: 16px 0;
+
+  span {
+    line-height: 1.2;
+  }
 }
 
 .c-datepicker__month {
@@ -214,7 +219,9 @@ $primary: #00bcd4;
   height: 36px;
 }
 
-.c-datepicker__day-head, c-datepicker__day-body {
+.c-datepicker__day-head, .c-datepicker__day-body {
+  padding: 0;
+  text-align: center;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -250,6 +257,11 @@ $primary: #00bcd4;
 
 .c-datepicker__days {
   margin: 10px 20px;
+  width: auto;
+
+  .c-datepicker__days-head {
+    border: none;
+  }
 }
 
 .c-datepicker__header-toggle {
@@ -283,9 +295,14 @@ $primary: #00bcd4;
   opacity: 0.5;
   z-index: 1;
   transition: opacity 200ms ease-in-out;
+
+  &:checked {
+    opacity: 1;
+  }
 }
 
 .c-datepicker__toggle--right {
+  left: initial;
   right: 10px;
 }
 
@@ -368,6 +385,7 @@ $primary: #00bcd4;
 
 .c-datepicker__clock {
   @include putOnCircle(12, 200px, 50px);
+  box-sizing: content-box;
   font-size: 14px;
   line-height: 50px;
   padding: 160px 0 20px 0;
