@@ -1,6 +1,10 @@
 {
-  "presets": ["es2015"],
-  "ignore": [
-    "dist"
-  ]
+  "env": {
+    "development": {
+      "presets": [["es2015", { "modules": false }]]
+    },
+    "test": {
+      "plugins": ["transform-async-to-generator", "transform-es2015-modules-commonjs"]
+    }
+  }
 }
