@@ -2,7 +2,7 @@ import rome from 'rome';
 import moment from 'moment';
 
 var popupTemplate = (function () {
-  return "\n<div class=\"c-datepicker\">\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker--show-time\" type=\"radio\" name=\"date-toggle\" value=\"time\" >\n\n  <input class=\"c-datepicker__toggle c-datepicker__toggle--left  c-datepicker--show-calendar\" type=\"radio\" name=\"date-toggle\" value=\"calendar\" checked>\n\n  <div class=\"c-datepicker__header\">\n    <div class=\"c-datepicker__header-day\">\n      <span class=\"js-day\">Monday</span>\n    </div>\n    <div class=\"c-datepicker__header-date\">\n      <span class=\"c-datepicker__header-date__month js-date-month\"></span>\n      <span class=\"c-datepicker__header-date__day js-date-day\"></span>\n      <span class=\"c-datepicker__header-date__time js-date-time\">\n        <span class=\"c-datepicker__header-date__hours js-date-hours\">09</span>:<span class=\"c-datepicker__header-date__minutes js-date-minutes\">00</span>\n      </span>\n    </div>\n  </div>\n\n  <div class=\"c-datepicker__calendar\"></div>\n  <div class=\"c-datepicker__clock\">\n    <div class=\"c-datepicker__clock__am-pm-toggle\">\n      <label class=\"c-datepicker__toggle--checked\">\n        <input checked=\"checked\" class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--am\" type=\"radio\" name=\"time-date-toggle\" value=\"AM\" />\n        AM\n      </label>\n\n      <label>\n        <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--pm\" type=\"radio\" name=\"time-date-toggle\" value=\"PM\" />\n        PM\n      </label>\n    </div>\n\n    <div class=\"c-datepicker__clock__hours\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"3\">3</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"4\">4</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"6\">6</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"7\">7</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"8\">8</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"9\">9</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"11\">11</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">12</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"1\">1</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"2\">2</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n    <div class=\"c-datepicker__clock__minutes\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"15\">15</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"20\">20</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"25\">25</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"30\">30</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"35\">35</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"40\">40</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"45\">45</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"50\">50</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"55\">55</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">0</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-btns\">\n    <a class=\"c-btn c-btn--flat js-cancel\">Cancel</a>\n    <a class=\"c-btn c-btn--flat js-ok\">OK</a>\n  </div>\n</div>\n";
+  return "\n<div class=\"c-datepicker\">\n  <a class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker--show-time js-show-clock\" title=\"show time picker\">\n  </a>\n\n  <a class=\"c-datepicker__toggle c-datepicker__toggle--left c-datepicker--show-calendar is-selected js-show-calendar\" title=\"show date picker\">\n  </a>\n\n  <div class=\"c-datepicker__header\">\n    <div class=\"c-datepicker__header-day\">\n      <span class=\"js-day\">Monday</span>\n    </div>\n    <div class=\"c-datepicker__header-date\">\n      <span class=\"c-datepicker__header-date__month js-date-month\"></span>\n      <span class=\"c-datepicker__header-date__day js-date-day\"></span>\n      <span class=\"c-datepicker__header-date__time js-date-time\">\n        <span class=\"c-datepicker__header-date__hours js-date-hours\">09</span>:<span class=\"c-datepicker__header-date__minutes js-date-minutes\">00</span>\n      </span>\n    </div>\n  </div>\n\n  <div class=\"c-datepicker__calendar\"></div>\n  <div class=\"c-datepicker__clock\">\n    <div class=\"c-datepicker__clock__am-pm-toggle\">\n      <label class=\"c-datepicker__toggle--checked\">\n        <input checked=\"checked\" class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--am\" type=\"radio\" name=\"time-date-toggle\" value=\"AM\" />\n        AM\n      </label>\n\n      <label>\n        <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--pm\" type=\"radio\" name=\"time-date-toggle\" value=\"PM\" />\n        PM\n      </label>\n    </div>\n    <div class=\"c-datepicker__mask\"></div>\n    <div class=\"c-datepicker__clock__hours\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"3\">3</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"4\">4</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"6\">6</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"7\">7</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"8\">8</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"9\">9</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"11\">11</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">12</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"1\">1</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"2\">2</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n    <div class=\"c-datepicker__clock__minutes\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"15\">15</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"20\">20</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"25\">25</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"30\">30</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"35\">35</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"40\">40</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"45\">45</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"50\">50</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"55\">55</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">0</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-btns\">\n    <a class=\"c-btn c-btn--flat js-cancel\">Cancel</a>\n    <a class=\"c-btn c-btn--flat js-ok\">OK</a>\n  </div>\n</div>\n";
 });
 
 var scrimTemplate = (function (_ref) {
@@ -80,7 +80,43 @@ var possibleConstructorReturn = function (self, call) {
 
 
 
+var slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
 
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
 
 
 
@@ -244,16 +280,14 @@ var DateTimePicker = function (_Events) {
   createClass(DateTimePicker, [{
     key: 'initializeRome',
     value: function initializeRome(container, validator) {
-      var _this2 = this;
+      var onData = this.onChangeDate.bind(this);
 
       return rome(container, {
         styles: this.options.styles,
         time: false,
         dateValidator: validator,
         initialValue: this.value
-      }).on('data', function (value) {
-        return _this2.set(value);
-      });
+      }).on('data', onData);
     }
 
     // called to open the picker
@@ -274,6 +308,7 @@ var DateTimePicker = function (_Events) {
       }
 
       this.setDate(this.value);
+      this.setTime(this.value);
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
       this._show();
     }
@@ -285,54 +320,67 @@ var DateTimePicker = function (_Events) {
   }, {
     key: '_hide',
     value: function _hide() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.pickerEl.classList.remove('open');
       window.setTimeout(function () {
-        _this3.options.container.removeChild(_this3.pickerEl);
-        document.body.removeChild(_this3.scrimEl);
-        _this3.trigger('close');
+        _this2.options.container.removeChild(_this2.pickerEl);
+        document.body.removeChild(_this2.scrimEl);
+        _this2.trigger('close');
       }, 200);
       return this;
     }
   }, {
     key: '_show',
     value: function _show() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.delegateEvents();
       // add the animation classes on the next animation tick
       // so that they actually work
       window.requestAnimationFrame(function () {
-        _this4.scrimEl.classList.add(_this4.options.styles.scrim + '--shown');
-        _this4.pickerEl.classList.add(prefix + '--open');
-        _this4.trigger('open');
+        _this3.scrimEl.classList.add(_this3.options.styles.scrim + '--shown');
+        _this3.pickerEl.classList.add(prefix + '--open');
+        _this3.trigger('open');
       });
       return this;
     }
   }, {
     key: 'delegateEvents',
     value: function delegateEvents() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.$('.js-cancel').addEventListener('click', function () {
-        return _this5.clickCancel();
+        return _this4.clickCancel();
       }, false);
       this.$('.js-ok').addEventListener('click', function () {
-        return _this5.clickSubmit();
+        return _this4.clickSubmit();
       }, false);
 
+      this.$('.c-datepicker__clock__hours').addEventListener('mouseleave', function (e) {
+        return _this4.mouseOutClock(e);
+      }, false);
       this.$('.' + this.options.styles.clockNum).forEach(function (el) {
         el.addEventListener('click', function (e) {
-          return _this5.clickClock(e);
+          return _this4.clickClock(e);
+        }, false);
+        el.addEventListener('mouseenter', function (e) {
+          return _this4.mouseInClock(e);
         }, false);
       });
 
       this.$('.c-datepicker__clock--am').addEventListener('click', function (e) {
-        return _this5.clickAm(e);
+        return _this4.clickAm(e);
       }, false);
       this.$('.c-datepicker__clock--pm').addEventListener('click', function (e) {
-        return _this5.clickPm(e);
+        return _this4.clickPm(e);
+      }, false);
+
+      this.$('.js-show-calendar').addEventListener('click', function (e) {
+        return _this4.clickShowCalendar(e);
+      }, false);
+      this.$('.js-show-clock').addEventListener('click', function (e) {
+        return _this4.clickShowClock(e);
       }, false);
 
       return this;
@@ -354,6 +402,7 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'clickClock',
     value: function clickClock(e) {
+      var newValue = moment(this.value);
       var number = parseInt(e.currentTarget.getAttribute('data-number'), 10);
       if (number === 0 && this.meridiem === 'pm') {
         number = 12;
@@ -361,38 +410,95 @@ var DateTimePicker = function (_Events) {
         number += 12;
       }
 
-      this.value.hour(number);
-      this.setTime(this.value);
+      newValue.hour(number);
+      this.set(newValue);
       return this;
+    }
+  }, {
+    key: 'onChangeDate',
+    value: function onChangeDate(dateString) {
+      var newValue = moment(this.value);
+
+      var _dateString$split = dateString.split('-'),
+          _dateString$split2 = slicedToArray(_dateString$split, 3),
+          year = _dateString$split2[0],
+          month = _dateString$split2[1],
+          date = _dateString$split2[2];
+
+      newValue.set({ year: year, month: month - 1, date: date });
+
+      this.set(newValue);
+      return this;
+    }
+  }, {
+    key: 'mouseInClock',
+    value: function mouseInClock() {
+      var active = this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '--active');
+
+      if (active) {
+        active.classList.add('hide-hand');
+      }
+    }
+  }, {
+    key: 'mouseOutClock',
+    value: function mouseOutClock() {
+      var hideHand = this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '--active.hide-hand');
+
+      if (hideHand) {
+        hideHand.classList.remove('hide-hand');
+      }
     }
   }, {
     key: 'clickAm',
     value: function clickAm() {
+      var newValue = moment(this.value);
       if (this.meridiem === 'pm') {
         this.meridiem = 'am';
-        this.value.hour(this.value.hour() - 12);
+        newValue.hour(newValue.hour() - 12);
       }
-      this.setTime(this.value);
+      this.set(newValue);
       return this;
     }
   }, {
     key: 'clickPm',
     value: function clickPm() {
+      var newValue = moment(this.value);
       if (this.meridiem === 'am') {
         this.meridiem = 'pm';
-        this.value.hour(this.value.hour() + 12);
+        newValue.hour(newValue.hour() + 12);
       }
-      this.setTime(this.value);
+      this.set(newValue);
       return this;
+    }
+  }, {
+    key: 'clickShowCalendar',
+    value: function clickShowCalendar() {
+      this.$(".js-show-calendar").classList.add("is-selected");
+      this.$(".js-show-clock").classList.remove("is-selected");
+    }
+  }, {
+    key: 'clickShowClock',
+    value: function clickShowClock() {
+      this.$(".js-show-clock").classList.add("is-selected");
+      this.$(".js-show-calendar").classList.remove("is-selected");
     }
   }, {
     key: 'data',
     value: function data(val) {
       return val ? this.set(val) : this.value;
     }
+
+    // update the picker's date/time value
+    // value: moment
+    // silent: if true, do not fire any events on change
+
   }, {
     key: 'set',
-    value: function set$$1(value, opts) {
+    value: function set$$1(value) {
+      var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+          _ref$silent = _ref.silent,
+          silent = _ref$silent === undefined ? false : _ref$silent;
+
       var m = moment(value);
 
       // maintain a list of change events to fire all at once later
@@ -400,12 +506,11 @@ var DateTimePicker = function (_Events) {
       if (m.date() !== this.value.date() || m.month() !== this.value.month() || m.year() !== this.value.year()) {
         this.setDate(m);
         evts.push('change:date');
-      } else {
-        // otherwise just the time is being set
-        // so fire a change:time event
+      } else if (m.hour() !== this.value.hour() || m.minutes() !== this.value.minutes()) {
         this.setTime(m);
         evts.push('change:time');
       }
+
       if (this.options.el) {
         // if there is an element to fire events on
         if (this.options.el.tagName === 'INPUT') {
@@ -416,7 +521,7 @@ var DateTimePicker = function (_Events) {
           this.options.el.setAttribute('data-value', m.format(this.options.format));
         }
       }
-      if (!opts || !opts.silent) {
+      if (evts.length > 0 && !silent) {
         // fire all the events we've collected
         this.trigger(['change'].concat(evts).join(' '), this.value, this);
       }
@@ -453,10 +558,14 @@ var DateTimePicker = function (_Events) {
       var m = moment(time);
       var hour = m.format('HH');
       var hourAsInt = parseInt(hour, 10) % 12;
+      var oldActiveHours = this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '--active');
 
       this.$('.js-date-hours').innerText = hour;
 
-      this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '[data-number="' + hourAsInt + '"]').classList.add('.' + this.options.styles.clockNum + '--active');
+      if (oldActiveHours) {
+        oldActiveHours.classList.remove(this.options.styles.clockNum + '--active');
+      }
+      this.$('.c-datepicker__clock__hours .' + this.options.styles.clockNum + '[data-number="' + hourAsInt + '"]').classList.add(this.options.styles.clockNum + '--active');
       this.value.hours(m.hours());
       this.meridiem = this.value.format('a');
 

@@ -121,10 +121,10 @@
   .c-datepicker__header-date__time > span {
     display: inline-block; }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__header .c-datepicker__header-date__time {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1; }
 
-.c-datepicker--show-calendar:checked ~ .c-datepicker__header .c-datepicker__header-date__month, .c-datepicker--show-calendar:checked ~ .c-datepicker__header .c-datepicker__header-date__day {
+.c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__month, .c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__day {
   opacity: 1; }
 
 .modal-btns {
@@ -208,7 +208,8 @@
 
 .c-datepicker__toggle {
   top: 170px;
-  width: 23px;
+  width: 36px;
+  height: 30px;
   visibility: hidden;
   opacity: 0.5;
   z-index: 1;
@@ -220,13 +221,13 @@
 .c-datepicker__toggle--left {
   left: 10px; }
 
-.c-datepicker__toggle:checked {
+.c-datepicker__toggle.is-selected {
   opacity: 1; }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__calendar {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__calendar {
   display: none; }
 
-.c-datepicker--show-calendar:checked ~ .c-datepicker__clock {
+.c-datepicker--show-calendar.is-selected ~ .c-datepicker__clock {
   display: none; }
 
 .c-datepicker__clock {
@@ -239,25 +240,25 @@
   list-style: none;
   /* [2] */
   font-size: 14px;
-  line-height: 36px;
+  line-height: 50px;
   padding: 160px 0 20px 0;
-  margin: 0 auto;
-  position: relative; }
+  margin: 0 auto; }
   .c-datepicker__clock .c-datepicker__clock__num {
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 36px;
-    height: 36px;
-    margin: -18px; }
+    width: 50px;
+    height: 50px;
+    margin: -25px;
+    z-index: 98; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1) {
       transform: rotate(0deg) translate(100px) rotate(-0deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(270deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(270deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(1):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -265,11 +266,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2) {
       transform: rotate(30deg) translate(100px) rotate(-30deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(300deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(300deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(2):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -277,11 +278,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3) {
       transform: rotate(60deg) translate(100px) rotate(-60deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(330deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(330deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(3):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -289,11 +290,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4) {
       transform: rotate(90deg) translate(100px) rotate(-90deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(360deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(360deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(4):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -301,11 +302,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5) {
       transform: rotate(120deg) translate(100px) rotate(-120deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(390deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(390deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(5):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -313,11 +314,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6) {
       transform: rotate(150deg) translate(100px) rotate(-150deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(420deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(420deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(6):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -325,11 +326,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7) {
       transform: rotate(180deg) translate(100px) rotate(-180deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(450deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(450deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(7):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -337,11 +338,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8) {
       transform: rotate(210deg) translate(100px) rotate(-210deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(480deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(480deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(8):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -349,11 +350,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9) {
       transform: rotate(240deg) translate(100px) rotate(-240deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(510deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(510deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(9):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -361,11 +362,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10) {
       transform: rotate(270deg) translate(100px) rotate(-270deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(540deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(540deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(10):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -373,11 +374,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11) {
       transform: rotate(300deg) translate(100px) rotate(-300deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(570deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(570deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(11):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -385,11 +386,11 @@
         background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12) {
       transform: rotate(330deg) translate(100px) rotate(-330deg); }
-    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands {
+    .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(600deg); }
-      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12).c-datepicker__clock__num--active ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
+      .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12).c-datepicker__clock__num--active:not(.hide-hand) ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.05); }
+        background: #00bcd4; }
     .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12):hover ~ .c-datepicker__clock-hands {
       transform: translate(-50%, -50%) rotate(600deg); }
       .c-datepicker__clock .c-datepicker__clock__num:nth-of-type(12):hover ~ .c-datepicker__clock-hands .c-datepicker__hour-hand {
@@ -426,11 +427,13 @@
       height: 35px;
       z-index: -1; }
 
-.c-datepicker__day-body--active:before, .c-datepicker__clock__num--active:before {
-  background: rgba(0, 0, 0, 0.05);
-  width: 35px;
-  height: 35px;
-  z-index: -1; }
+.c-datepicker__day-body--active:not(.hide-hand), .c-datepicker__clock__num--active:not(.hide-hand) {
+  color: white; }
+  .c-datepicker__day-body--active:not(.hide-hand):before, .c-datepicker__clock__num--active:not(.hide-hand):before {
+    background: #00bcd4;
+    width: 35px;
+    height: 35px;
+    z-index: -1; }
 
 .c-datepicker__clock-hands {
   position: absolute;
@@ -455,6 +458,37 @@
   visibility: hidden;
   transform: translateY(30px) scale(0.6);
   opacity: 0; }
+
+.c-datepicker__clock__hours {
+  height: 200px;
+  margin: -69px 0 0 0;
+  width: 200px; }
+
+.c-datepicker__mask {
+  width: 133px;
+  height: 132px;
+  position: absolute;
+  top: 123px;
+  left: 35px;
+  z-index: 99; }
+  .c-datepicker__mask:after {
+    content: ' ';
+    width: 164px;
+    height: 71px;
+    display: block;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    margin-left: -16px; }
+  .c-datepicker__mask:before {
+    content: ' ';
+    width: 75px;
+    height: 158px;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 29px;
+    margin-top: -18px; }
 
 .c-datepicker__clock--show-minutes .c-datepicker__clock__minutes {
   visibility: visible; }

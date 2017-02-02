@@ -157,11 +157,11 @@ $primary: #00bcd4;
   }
 }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__header .c-datepicker__header-date__time {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1
 }
 
-.c-datepicker--show-calendar:checked {
+.c-datepicker--show-calendar.is-selected {
   ~ .c-datepicker__header {
     .c-datepicker__header-date__month, .c-datepicker__header-date__day {
       opacity: 1
@@ -277,7 +277,8 @@ $primary: #00bcd4;
 
 .c-datepicker__toggle {
   top: 170px;
-  width: 23px;
+  width: 36px;
+  height: 30px;
   visibility: hidden;
   opacity: 0.5;
   z-index: 1;
@@ -292,15 +293,15 @@ $primary: #00bcd4;
   left: 10px;
 }
 
-.c-datepicker__toggle:checked {
+.c-datepicker__toggle.is-selected {
   opacity: 1;
 }
 
-.c-datepicker--show-time:checked ~ .c-datepicker__calendar {
+.c-datepicker--show-time.is-selected ~ .c-datepicker__calendar {
   display: none;
 }
 
-.c-datepicker--show-calendar:checked ~ .c-datepicker__clock {
+.c-datepicker--show-calendar.is-selected ~ .c-datepicker__clock {
   display: none;
 }
 
@@ -327,6 +328,7 @@ $primary: #00bcd4;
     width:  $item-size;
     height: $item-size;
     margin: -$half-item;
+    z-index: 98;
 
     $angle: 360 / $nb-items;
     $rot: 0;
@@ -337,13 +339,13 @@ $primary: #00bcd4;
       }
 
       &:nth-of-type(#{$i}) {
-        &.c-datepicker__clock__num--active {
+        &.c-datepicker__clock__num--active:not(.hide-hand) {
           ~ .c-datepicker__clock-hands {
             $handRot: $rot + 270;
             transform: translate(-50%, -50%) rotate(#{$handRot}deg);
             .c-datepicker__hour-hand {
               opacity: 1;
-              background: rgba(0,0,0,0.05);
+              background: $primary;
             }
           }
         }
@@ -365,12 +367,11 @@ $primary: #00bcd4;
 
 
 .c-datepicker__clock {
-  @include putOnCircle(12, 200px, 36px);
+  @include putOnCircle(12, 200px, 50px);
   font-size: 14px;
-  line-height: 36px;
+  line-height: 50px;
   padding: 160px 0 20px 0;
   margin: 0 auto;
-  position: relative;
 
   &::before {
     content: "";
@@ -417,9 +418,10 @@ $primary: #00bcd4;
 .c-datepicker__day-body, .c-datepicker__clock__num {
   @extend .u-hover-ball-effect;
 
-  &--active {
+  &--active:not(.hide-hand) {
+    color: white;
     &:before {
-      background: rgba(0, 0, 0, 0.05);
+      background: $primary;
       width: 35px;
       height: 35px;
       z-index: -1;
@@ -455,7 +457,38 @@ $primary: #00bcd4;
 }
 
 .c-datepicker__clock__hours {
+  height: 200px;
+  margin: -69px 0 0 0;
+  width: 200px;
+}
 
+.c-datepicker__mask {
+  &:after {
+    content: ' ';
+    width: 164px;
+    height: 71px;
+    display: block;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    margin-left: -16px;
+  }
+  &:before {
+    content: ' ';
+    width: 75px;
+    height: 158px;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 29px;
+    margin-top: -18px;
+  }
+  width: 133px;
+  height: 132px;
+  position: absolute;
+  top: 123px;
+  left: 35px;
+  z-index: 99;
 }
 
 .c-datepicker__clock--show-minutes {
