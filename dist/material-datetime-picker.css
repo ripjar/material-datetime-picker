@@ -123,6 +123,11 @@
 
 .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1; }
+  .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__hours, .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__minutes {
+    cursor: pointer;
+    opacity: .6; }
+    .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__hours.active, .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__minutes.active {
+      opacity: 1; }
 
 .c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__month, .c-datepicker--show-calendar.is-selected ~ .c-datepicker__header .c-datepicker__header-date__day {
   opacity: 1; }
@@ -455,31 +460,38 @@
   top: 10px; }
 
 .c-datepicker__clock__minutes {
-  visibility: hidden;
-  transform: translateY(30px) scale(0.6);
-  opacity: 0; }
+  display: none;
+  height: 200px;
+  margin: -69px 0 0 0;
+  width: 200px;
+  display: none; }
+  .c-datepicker__clock__minutes.active {
+    display: block; }
 
 .c-datepicker__clock__hours {
   height: 200px;
   margin: -69px 0 0 0;
-  width: 200px; }
+  width: 200px;
+  display: none; }
+  .c-datepicker__clock__hours.active {
+    display: block; }
 
 .c-datepicker__mask {
-  width: 133px;
+  width: 127px;
   height: 132px;
   position: absolute;
-  top: 123px;
-  left: 35px;
+  top: 122px;
+  left: 37px;
   z-index: 99; }
   .c-datepicker__mask:after {
     content: ' ';
-    width: 164px;
-    height: 71px;
+    width: 156px;
+    height: 70px;
     display: block;
     position: absolute;
-    top: 33px;
+    top: 32px;
     left: 0;
-    margin-left: -16px; }
+    margin-left: -13px; }
   .c-datepicker__mask:before {
     content: ' ';
     width: 75px;
@@ -487,7 +499,7 @@
     display: block;
     position: absolute;
     top: 6px;
-    left: 29px;
+    left: 28px;
     margin-top: -18px; }
 
 .c-datepicker__clock--show-minutes .c-datepicker__clock__minutes {
