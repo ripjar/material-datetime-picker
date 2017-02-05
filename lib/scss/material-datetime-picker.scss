@@ -158,7 +158,15 @@ $primary: #00bcd4;
 }
 
 .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
-  opacity: 1
+  opacity: 1;
+
+  .c-datepicker__header-date__hours, .c-datepicker__header-date__minutes {
+    cursor: pointer;
+    opacity: .6;
+    &.active {
+      opacity: 1;
+    }
+  }
 }
 
 .c-datepicker--show-calendar.is-selected {
@@ -451,27 +459,37 @@ $primary: #00bcd4;
 }
 
 .c-datepicker__clock__minutes {
-  visibility: hidden;
-  transform: translateY(30px) scale(0.6);
-  opacity: 0;
+  display: none;
+  height: 200px;
+  margin: -69px 0 0 0;
+  width: 200px;
+  display: none;
+  &.active {
+    display: block;
+  }
 }
 
 .c-datepicker__clock__hours {
   height: 200px;
   margin: -69px 0 0 0;
   width: 200px;
+  display: none;
+
+  &.active {
+    display: block;
+  }
 }
 
 .c-datepicker__mask {
   &:after {
     content: ' ';
-    width: 164px;
-    height: 71px;
+    width: 156px;
+    height: 70px;
     display: block;
     position: absolute;
-    top: 33px;
+    top: 32px;
     left: 0;
-    margin-left: -16px;
+    margin-left: -13px;
   }
   &:before {
     content: ' ';
@@ -480,14 +498,14 @@ $primary: #00bcd4;
     display: block;
     position: absolute;
     top: 6px;
-    left: 29px;
+    left: 28px;
     margin-top: -18px;
   }
-  width: 133px;
+  width: 127px;
   height: 132px;
   position: absolute;
-  top: 123px;
-  left: 35px;
+  top: 122px;
+  left: 37px;
   z-index: 99;
 }
 
