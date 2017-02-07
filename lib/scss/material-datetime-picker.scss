@@ -159,11 +159,14 @@ $primary: #00bcd4;
   }
 }
 
+.c-datepicker__header-date__hours, .c-datepicker__header-date__minutes {
+  cursor: pointer;
+}
+
 .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1;
 
   .c-datepicker__header-date__hours, .c-datepicker__header-date__minutes {
-    cursor: pointer;
     opacity: .6;
     &.active {
       opacity: 1;
@@ -197,9 +200,6 @@ $primary: #00bcd4;
   &:hover {
     /* color: white; */
   }
-
-
-
 }
 
 .c-datepicker__day--selected::after {
