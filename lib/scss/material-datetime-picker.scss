@@ -139,11 +139,13 @@ $primary: #00bcd4;
 }
 
 .c-datepicker__header-date__month {
+  cursor: pointer;
   font-size: 24px;
   opacity: 0.6;
 }
 
 .c-datepicker__header-date__day {
+  cursor: pointer;
   font-size: 64px;
   opacity: 0.6;
 }
