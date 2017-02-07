@@ -108,10 +108,12 @@
   transition: opacity 100ms ease-in-out; }
 
 .c-datepicker__header-date__month {
+  cursor: pointer;
   font-size: 24px;
   opacity: 0.6; }
 
 .c-datepicker__header-date__day {
+  cursor: pointer;
   font-size: 64px;
   opacity: 0.6; }
 
@@ -121,10 +123,12 @@
   .c-datepicker__header-date__time > span {
     display: inline-block; }
 
+.c-datepicker__header-date__hours, .c-datepicker__header-date__minutes {
+  cursor: pointer; }
+
 .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time {
   opacity: 1; }
   .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__hours, .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__minutes {
-    cursor: pointer;
     opacity: .6; }
     .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__hours.active, .c-datepicker--show-time.is-selected ~ .c-datepicker__header .c-datepicker__header-date__time .c-datepicker__header-date__minutes.active {
       opacity: 1; }

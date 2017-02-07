@@ -398,6 +398,13 @@ var DateTimePicker = function (_Events) {
       this.$('.js-show-calendar').addEventListener('click', function (e) {
         return _this4.clickShowCalendar(e);
       }, false);
+      this.$('.js-date-day').addEventListener('click', function (e) {
+        return _this4.clickShowCalendar(e);
+      }, false);
+      this.$('.js-date-month').addEventListener('click', function (e) {
+        return _this4.clickShowCalendar(e);
+      }, false);
+
       this.$('.js-show-clock').addEventListener('click', function (e) {
         return _this4.clickShowClock(e);
       }, false);
@@ -520,6 +527,7 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'showHourClock',
     value: function showHourClock() {
+      this.clickShowClock();
       this.$('.js-clock-hours').classList.add('active');
       this.$('.js-clock-minutes').classList.remove('active');
       this.$('.js-date-hours').classList.add('active');
@@ -528,6 +536,7 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'showMinuteClock',
     value: function showMinuteClock() {
+      this.clickShowClock();
       this.$('.js-clock-hours').classList.remove('active');
       this.$('.js-clock-minutes').classList.add('active');
       this.$('.js-date-hours').classList.remove('active');
