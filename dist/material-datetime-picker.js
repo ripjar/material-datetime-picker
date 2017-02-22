@@ -310,11 +310,18 @@ var DateTimePicker = function (_Events) {
       this.pmToggleEl = this.$('.c-datepicker__clock--pm');
 
       if (!this.value) {
-        this.value = moment(this.options.default);
+        // TODO hack
+        // set/setDate/setTime need refactoring to have single concerns
+        // (set: set the value; setDate/setTime rename to renderDate/renderTime
+        //  and deal with updating the view only).
+        // For now this allows us to set the default time using the same quantize
+        // rules as setting the date explicitly. Setting this.value meets setTime|Date's
+        // expectation that we have a value, and `0` guarantees that we will detect 
+        this.value = moment(0);
+        this.setDate(this.options.default);
+        this.setTime(this.options.default);
       }
 
-      this.setDate(this.value);
-      this.setTime(this.value);
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
       this._show();
     }
@@ -563,7 +570,13 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'data',
     value: function data(val) {
+      console.warn('MaterialDatetimePicker#data is deprecated and will be removed in a future release. Please use get or set.');
       return val ? this.set(val) : this.value;
+    }
+  }, {
+    key: 'get',
+    value: function get$$1() {
+      return moment(this.value);
     }
 
     // update the picker's date/time value
@@ -584,7 +597,9 @@ var DateTimePicker = function (_Events) {
       if (m.date() !== this.value.date() || m.month() !== this.value.month() || m.year() !== this.value.year()) {
         this.setDate(m);
         evts.push('change:date');
-      } else if (m.hour() !== this.value.hour() || m.minutes() !== this.value.minutes()) {
+      }
+
+      if (m.hour() !== this.value.hour() || m.minutes() !== this.value.minutes()) {
         this.setTime(m);
         evts.push('change:time');
       }
@@ -634,7 +649,7 @@ var DateTimePicker = function (_Events) {
     key: 'setTime',
     value: function setTime(time) {
       var m = moment(time);
-      var minuteAsInt = Math.ceil(parseInt(m.format('mm'), 10) / 5) * 5;
+      var minuteAsInt = Math.round(parseInt(m.format('mm'), 10) / 5) * 5;
       m.minutes(minuteAsInt);
 
       var hour = m.format('HH');
