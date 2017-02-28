@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('rome'), require('moment')) :
-	typeof define === 'function' && define.amd ? define(['rome', 'moment'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('rome'), require('moment'), require('moment/locale/es')) :
+	typeof define === 'function' && define.amd ? define(['rome', 'moment', 'moment/locale/es'], factory) :
 	(global.MaterialDatetimePicker = factory(global.rome,global.moment));
 }(this, (function (rome,moment) { 'use strict';
 
@@ -292,7 +292,9 @@ var DateTimePicker = function (_Events) {
         styles: this.options.styles,
         time: false,
         dateValidator: validator,
-        initialValue: this.value
+        initialValue: this.value,
+        weekdayFormat: moment.weekdaysMin(),
+        weekStart: moment().weekday(0).day()
       }).on('data', onData);
     }
 
@@ -316,7 +318,7 @@ var DateTimePicker = function (_Events) {
         //  and deal with updating the view only).
         // For now this allows us to set the default time using the same quantize
         // rules as setting the date explicitly. Setting this.value meets setTime|Date's
-        // expectation that we have a value, and `0` guarantees that we will detect 
+        // expectation that we have a value, and `0` guarantees that we will detect
         this.value = moment(0);
         this.setDate(this.options.default);
         this.setTime(this.options.default);
