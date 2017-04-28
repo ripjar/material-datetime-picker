@@ -238,6 +238,7 @@ $primary: #00bcd4 !default;
   cursor: pointer;
 }
 
+.c-datepicker__day--disabled,
 .rd-day-prev-month {
   opacity: 0.1;
   pointer-events: none;
@@ -313,6 +314,11 @@ $primary: #00bcd4 !default;
 
 .c-datepicker--show-calendar.is-selected ~ .c-datepicker__clock {
   display: none;
+}
+
+.c-datepicker__clock__num--disabled {
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 @mixin putOnCircle(
@@ -425,7 +431,7 @@ $primary: #00bcd4 !default;
 
 
 
-.c-datepicker__day-body, .c-datepicker__clock__num {
+.c-datepicker__day-body:not(.c-datepicker__day--disabled), .c-datepicker__clock__num {
   @extend .u-hover-ball-effect;
 
   &--active:not(.hide-hand) {
@@ -537,6 +543,11 @@ $primary: #00bcd4 !default;
   height: 40px;
   padding: 20px;
   line-height: 40px;
+
+  label[disabled="disabled"] {
+    opacity: 0.1;
+    pointer-events: none;
+  }
 
   label {
     width: 40px;
