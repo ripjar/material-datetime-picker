@@ -1,6 +1,6 @@
 {
   "name": "material-datetime-picker",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "A Vanilla JS Material Design date/time picker component",
   "main": "dist/material-datetime-picker.js",
   "module": "dist/material-datetime-picker.mjs",

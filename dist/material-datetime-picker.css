@@ -104,7 +104,7 @@
 .c-datepicker__header-date span {
   display: block;
   color: white;
-  margin: 4px 0;
+  margin: 0;
   transition: opacity 100ms ease-in-out; }
 
 .c-datepicker__header-date__month {
