@@ -1,10 +1,10 @@
-# Material Datetime Picker 
+# Material Datetime Picker
 
 A Material Design date/time picker modal, built for the web. Works well with Materialize, or standalone.
 
 [https://ripjar.github.io/material-datetime-picker/](https://ripjar.github.io/material-datetime-picker/)
 
-[![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker) 
+[![Status][status]](https://travis-ci.org/ripjar/material-datetime-picker)
 [![Package][npm]](https://www.npmjs.com/package/material-datetime-picker)
 
 ![Time][date] ![Time][time]
@@ -23,7 +23,7 @@ The picker depends on Google's Material Design icons (packaged with Materialize)
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
---- 
+---
 
 For best results also include Google's Material Font `Roboto`;
 
@@ -47,7 +47,7 @@ If you want to use this project as a standalone `<script>`, you can use  `dist/m
 ### Manual (recommended)
 
 The picker can be instantiated and interacted with manally;
-    
+
 ```javascript
 import MaterialDateTimePicker from 'material-datetime-picker';
 
@@ -57,7 +57,7 @@ const picker = new MaterialDateTimePicker()
     .on('close', () => console.log('closed'));
 
 document.querySelector('.c-datepicker-btn')
-    .on('click', () => picker.open());        
+    .on('click', () => picker.open());
 ```
 
 ---
@@ -65,7 +65,7 @@ document.querySelector('.c-datepicker-btn')
 ### As form input
 
 The picker is decoupled from any single form element for simplicity. However, it should be simple to link the picker to a form input or button. For instance, given the input element `<input class="c-datepicker-input" />`, the following could be written;
-    
+
 ```javascript
 import MaterialDateTimePicker from 'material-datetime-picker';
 
@@ -75,28 +75,28 @@ const picker = new MaterialDatePicker()
       input.value = val.format("DD/MM/YYYY");
     });
 
-input.addEventListener('focus', () => picker.open());      
+input.addEventListener('focus', () => picker.open());
 ```
 
 ## Options
-    
+
 All options are optional, including the `el`.
 
 ```javascript
 {
-    // DOM Element to attach the datepicker. This element will receive 
-    // events when the data changes. If an input element, will be 
+    // DOM Element to attach the datepicker. This element will receive
+    // events when the data changes. If an input element, will be
     // populated with formatted date and time chosen.
     // `el` must be a DOM Element object. Selectpr strings or wrappers
     // like a jQuery selection are not supported.
     el: document.querySelector('.c-datepicker-btn'),
-    // if `el` is set, the format used to display the datetime in the input, 
-    format: 'DD/MM/YY', 
+    // if `el` is set, the format used to display the datetime in the input,
+    format: 'DD/MM/YY',
     //  the default value of the picker
     default: moment(),
     // the container to append the picker. If you change this, you need to make
     // sure your element has a z-index > 0 so that it displays in front of the scrim.
-    container: document.body,    
+    container: document.body,
     // cosmetic classes that can be overriden
     // mostly used for styling the calendar
     styles: {
@@ -123,7 +123,12 @@ All options are optional, including the `el`.
         clockNum: 'c-datepicker__clock__num'
     },
     // date range to allow (see rome validator factories)
-    dateValidator: null       
+    dateValidator: null
+    // translations for buttons label
+    okLabel: 'OK',
+    cancelLabel: 'Cancel'
+    // format to display the day number.
+    dayFormat: 'Do',
 }
 ```
 
