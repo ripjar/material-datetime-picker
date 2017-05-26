@@ -318,7 +318,9 @@ $primary: #00bcd4 !default;
 @mixin putOnCircle(
           $nb-items, //Number of items
           $circle-size, //Parent size
-          $item-size //Item size
+          $item-size, //Item size
+          $selector,
+          $zIndex
        ) {
   $half-item:     $item-size / 2;
   $half-parent: $circle-size / 2;
@@ -330,7 +332,7 @@ $primary: #00bcd4 !default;
   border-radius: 50%;
   list-style: none;                 /* [2] */
 
-  .c-datepicker__clock__num {
+  .#{$selector} {
     display: block;
     position: absolute;
     top:  50%;
@@ -338,7 +340,7 @@ $primary: #00bcd4 !default;
     width:  $item-size;
     height: $item-size;
     margin: -$half-item;
-    z-index: 98;
+    z-index: $zIndex;
 
     $angle: 360 / $nb-items;
     $rot: 0;
@@ -377,11 +379,14 @@ $primary: #00bcd4 !default;
 
 
 .c-datepicker__clock {
-  @include putOnCircle(12, 200px, 50px);
+  @include putOnCircle(12, 200px, 50px,"c-datepicker__clock__num",98);
+  @include putOnCircle(12, 140px, 50px,"c-datepicker__clock__hours.inner .c-datepicker__clock__num",99);
   font-size: 14px;
   line-height: 50px;
   padding: 160px 0 20px 0;
   margin: 0 auto;
+  width: 190px;
+  height: 190px;
 
   &::before {
     content: "";
