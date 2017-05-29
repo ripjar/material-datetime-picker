@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "moment": "2.10.6",
+    "moment": "2.18.1",
     "rome": "https://github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6"
   },
   "devDependencies": {
