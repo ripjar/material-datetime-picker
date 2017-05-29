@@ -210,6 +210,8 @@ var Events = function () {
   return Events;
 }();
 
+var ESC_KEY = 27;
+
 var prefix = 'c-datepicker';
 var defaults$$1 = function defaults$$1() {
   return {
@@ -310,18 +312,24 @@ var DateTimePicker = function (_Events) {
         //  and deal with updating the view only).
         // For now this allows us to set the default time using the same quantize
         // rules as setting the date explicitly. Setting this.value meets setTime|Date's
-        // expectation that we have a value, and `0` guarantees that we will detect 
+        // expectation that we have a value, and `0` guarantees that we will detect
         this.value = moment(0);
         this.setDate(this.options.default);
         this.setTime(this.options.default);
+      } else {
+        this.setDate(this.value);
+        this.setTime(this.value);
       }
 
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
+      this._listenForCloseEvents();
+
       this._show();
     }
   }, {
     key: 'close',
     value: function close() {
+      this._stopListeningForCloseEvents();
       this._hide();
     }
   }, {
@@ -353,67 +361,90 @@ var DateTimePicker = function (_Events) {
       return this;
     }
   }, {
-    key: 'delegateEvents',
-    value: function delegateEvents() {
+    key: '_listenForCloseEvents',
+    value: function _listenForCloseEvents() {
       var _this4 = this;
 
+      this._onWindowKeypress = function (e) {
+        if (e.which === ESC_KEY) {
+          _this4.close();
+        }
+      };
+
+      window.addEventListener("keydown", this._onWindowKeypress);
+    }
+  }, {
+    key: '_stopListeningForCloseEvents',
+    value: function _stopListeningForCloseEvents() {
+      window.removeEventListener("keydown", this._onWindowKeypress);
+      this._closeHandler = null;
+    }
+  }, {
+    key: 'delegateEvents',
+    value: function delegateEvents() {
+      var _this5 = this;
+
       this.$('.js-cancel').addEventListener('click', function () {
-        return _this4.clickCancel();
+        return _this5.clickCancel();
       }, false);
       this.$('.js-ok').addEventListener('click', function () {
-        return _this4.clickSubmit();
+        return _this5.clickSubmit();
       }, false);
 
       this.$('.js-date-hours').addEventListener('click', function (e) {
-        return _this4.showHourClock(e);
+        return _this5.showHourClock(e);
       }, false);
       this.$('.js-date-minutes').addEventListener('click', function (e) {
-        return _this4.showMinuteClock(e);
+        return _this5.showMinuteClock(e);
       }, false);
 
       this.$('.js-clock-hours').addEventListener('mouseleave', function (e) {
-        return _this4.mouseOutHourClock(e);
+        return _this5.mouseOutHourClock(e);
       }, false);
       this.$('.js-clock-hours .' + this.options.styles.clockNum).forEach(function (el) {
         el.addEventListener('click', function (e) {
-          return _this4.clickClickHour(e);
+          return _this5.clickClickHour(e).showMinuteClock();
         }, false);
         el.addEventListener('mouseenter', function (e) {
-          return _this4.mouseInHourClock(e);
+          return _this5.mouseInHourClock(e);
         }, false);
       });
 
       this.$('.js-clock-minutes').addEventListener('mouseleave', function (e) {
-        return _this4.mouseOutMinuteClock(e);
+        return _this5.mouseOutMinuteClock(e);
       }, false);
       this.$('.js-clock-minutes .' + this.options.styles.clockNum).forEach(function (el) {
         el.addEventListener('click', function (e) {
-          return _this4.clickClockMinute(e);
+          return _this5.clickClockMinute(e);
         }, false);
         el.addEventListener('mouseenter', function (e) {
-          return _this4.mouseInMinuteClock(e);
+          return _this5.mouseInMinuteClock(e);
         }, false);
       });
 
       this.$('.c-datepicker__clock--am').addEventListener('click', function (e) {
-        return _this4.clickAm(e);
+        return _this5.clickAm(e);
       }, false);
       this.$('.c-datepicker__clock--pm').addEventListener('click', function (e) {
-        return _this4.clickPm(e);
+        return _this5.clickPm(e);
       }, false);
 
       this.$('.js-show-calendar').addEventListener('click', function (e) {
-        return _this4.clickShowCalendar(e);
+        return _this5.clickShowCalendar(e);
       }, false);
       this.$('.js-date-day').addEventListener('click', function (e) {
-        return _this4.clickShowCalendar(e);
+        return _this5.clickShowCalendar(e);
       }, false);
       this.$('.js-date-month').addEventListener('click', function (e) {
-        return _this4.clickShowCalendar(e);
+        return _this5.clickShowCalendar(e);
       }, false);
 
       this.$('.js-show-clock').addEventListener('click', function (e) {
-        return _this4.clickShowClock(e);
+        return _this5.clickShowClock(e);
+      }, false);
+
+      this.scrimEl.addEventListener('click', function () {
+        return _this5.close();
       }, false);
 
       return this;
