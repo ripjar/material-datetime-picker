@@ -94,6 +94,14 @@ All options are optional, including the `el`.
     format: 'DD/MM/YY', 
     //  the default value of the picker
     default: moment(),
+    // language
+    locale: 'en',  /* set any locale, available in moment.js. Default - english */
+    okLabel: 'OK',  /* set custom name for 'OK' button. Default - 'OK' */
+    cancelLabel: 'Cancel',  /* set custom name for 'Cancel' button. Default - 'Cancel' */
+    dayFormat: 'Do',  /* set Day of Month format as for moment.js object. Default - 'Do'
+                    'D'  for  1 2 ... 30 31
+                    'Do'  for  1st 2nd ... 30th 31st
+                    'DD'  for  01 02 ... 30 31 */
     // the container to append the picker. If you change this, you need to make
     // sure your element has a z-index > 0 so that it displays in front of the scrim.
     container: document.body,    
