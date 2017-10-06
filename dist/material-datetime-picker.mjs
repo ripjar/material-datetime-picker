@@ -10,6 +10,123 @@ var scrimTemplate = (function (_ref) {
   return "\n<div class=\"" + styles.scrim + "\"></div>\n";
 });
 
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+
+
+
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -213,7 +330,7 @@ var Events = function () {
 var ESC_KEY = 27;
 
 var prefix = 'c-datepicker';
-var defaults$$1 = function defaults$$1() {
+var defaults = function defaults() {
   return {
     default: moment().startOf('hour'),
     // allow the user to override all the classes
@@ -246,7 +363,13 @@ var defaults$$1 = function defaults$$1() {
     // the container to append the picker
     container: document.body,
     // allow any dates
-    dateValidator: undefined
+    dateValidator: undefined,
+    // Time picker default
+    timePickerDefault: false,
+    // Only time picker
+    timePickerOnly: false,
+    // Only date picker
+    datePickerOnly: false
   };
 };
 
@@ -259,8 +382,8 @@ var DateTimePicker = function (_Events) {
 
     var _this = possibleConstructorReturn(this, (DateTimePicker.__proto__ || Object.getPrototypeOf(DateTimePicker)).call(this));
 
-    var styles = Object.assign(defaults$$1().styles, options.styles);
-    _this.options = Object.assign(defaults$$1(), options);
+    var styles = Object.assign(defaults().styles, options.styles);
+    _this.options = Object.assign(defaults(), options);
     _this.options.styles = styles;
 
     // listen to any event
@@ -305,6 +428,19 @@ var DateTimePicker = function (_Events) {
       this.amToggleEl = this.$('.c-datepicker__clock--am');
       this.pmToggleEl = this.$('.c-datepicker__clock--pm');
 
+      // Date picker only
+      if (this.options.datePickerOnly && this.options.timePickerOnly) {
+        // Show both...continue
+      } else if (this.options.datePickerOnly) {
+        // Update UI
+        this.pickerEl.classList.add('c-datepicker--date-only');
+      } else if (this.options.timePickerOnly) {
+        // Update UI
+        this.pickerEl.classList.add('c-datepicker--time-only');
+        // Show timer
+        this.clickShowClock();
+      }
+
       if (!this.value) {
         // TODO hack
         // set/setDate/setTime need refactoring to have single concerns
@@ -323,6 +459,11 @@ var DateTimePicker = function (_Events) {
 
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
       this._listenForCloseEvents();
+
+      // If show time picker by default
+      if (this.options.timePickerDefault) {
+        this.clickShowClock();
+      }
 
       this._show();
     }
@@ -371,12 +512,12 @@ var DateTimePicker = function (_Events) {
         }
       };
 
-      window.addEventListener("keydown", this._onWindowKeypress);
+      window.addEventListener('keydown', this._onWindowKeypress);
     }
   }, {
     key: '_stopListeningForCloseEvents',
     value: function _stopListeningForCloseEvents() {
-      window.removeEventListener("keydown", this._onWindowKeypress);
+      window.removeEventListener('keydown', this._onWindowKeypress);
       this._closeHandler = null;
     }
   }, {
