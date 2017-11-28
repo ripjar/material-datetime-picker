@@ -252,7 +252,11 @@ var defaults$$1 = function defaults$$1() {
     // the container to append the picker
     container: document.body,
     // allow any dates
-    dateValidator: undefined
+    dateValidator: undefined,
+    // use default options for rome
+    romeOptions: {
+      time: false
+    }
   };
 };
 
@@ -266,8 +270,10 @@ var DateTimePicker = function (_Events) {
     var _this = possibleConstructorReturn(this, (DateTimePicker.__proto__ || Object.getPrototypeOf(DateTimePicker)).call(this));
 
     var styles = Object.assign(defaults$$1().styles, options.styles);
+    var romeOptions = Object.assign(defaults$$1().romeOptions, options.romeOptions);
     _this.options = Object.assign(defaults$$1(), options);
     _this.options.styles = styles;
+    _this.options.romeOptions = romeOptions;
 
     // listen to any event
     _this.on('*', function (evtName, evtData) {
@@ -289,13 +295,15 @@ var DateTimePicker = function (_Events) {
     key: 'initializeRome',
     value: function initializeRome(container, validator) {
       var onData = this.onChangeDate.bind(this);
-
-      return rome(container, {
+      console.info(this.options.romeOptions);
+      var options = Object.assign(this.options.romeOptions, {
         styles: this.options.styles,
-        time: false,
         dateValidator: validator,
         initialValue: this.value
-      }).on('data', onData);
+      });
+      console.info(options);
+
+      return rome(container, options).on('data', onData);
     }
 
     // called to open the picker
@@ -377,12 +385,12 @@ var DateTimePicker = function (_Events) {
         }
       };
 
-      window.addEventListener("keydown", this._onWindowKeypress);
+      window.addEventListener('keydown', this._onWindowKeypress);
     }
   }, {
     key: '_stopListeningForCloseEvents',
     value: function _stopListeningForCloseEvents() {
-      window.removeEventListener("keydown", this._onWindowKeypress);
+      window.removeEventListener('keydown', this._onWindowKeypress);
       this._closeHandler = null;
     }
   }, {
