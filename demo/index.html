@@ -4,7 +4,7 @@
   <title></title>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+        rel="stylesheet">
 
   <link rel="stylesheet" href="../dist/material-datetime-picker.css">
 
@@ -14,7 +14,13 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .row {
+      width: 100%;
+      float: left;
+    }
+
     .c-btn {
+      float: left;
       font-size: 14px;
       text-transform: capitalize;
       font-weight: 600;
@@ -34,6 +40,11 @@
       color: #393939;
       transition: background 200ms ease-in-out;
       box-shadow: 0 3.08696px 5.82609px 0 rgba(0, 0, 0, 0.16174), 0 3.65217px 12.91304px 0 rgba(0, 0, 0, 0.12435);
+    }
+
+    .value {
+      float: left;
+      padding: 19px 20px;
     }
 
     .c-btn--flat {
@@ -59,30 +70,81 @@
 </head>
 <body>
 
-  <a class="c-btn c-datepicker-btn">
-    <span class="material-icon">Open date picker</span>
+<div class="row">
+  <a class="c-btn c-datetimepicker-btn">
+    <span class="material-icon">Open date & time picker</span>
   </a>
+  <span class="value" id="outputDateTime"></span>
+</div>
 
-  <pre id="output"></pre>
+<div class="row">
+  <a class="c-btn c-datepicker-btn">
+    <span class="material-icon">Open date picker only</span>
+  </a>
+  <span class="value" id="outputDate"></span>
+</div>
 
+<div class="row">
+  <a class="c-btn c-timepicker-btn">
+    <span class="material-icon">Open time picker only</span>
+  </a>
+  <span class="value" id="outputTime"></span>
+</div>
 
-  <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
-  <script src="../dist/material-datetime-picker.js" charset="utf-8"></script>
+<div class="row">
+  <a class="c-btn c-datetimepicker-timedefault-btn">
+    <span class="material-icon">Open date & time picker, showing time by default</span>
+  </a>
+  <span class="value" id="outputDateTimeTimeDefault"></span>
+</div>
 
-  <script>
+<script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
+<script src="../dist/material-datetime-picker.js" charset="utf-8"></script>
 
-    var picker = new MaterialDatetimePicker({})
-      .on('submit', function(d) {
-        output.innerText = d;
-      });
+<script>
+  // Date & Time
+  var dateTimePicker = new MaterialDatetimePicker({})
+    .on('submit', function (d) {
+      document.querySelector('#outputDateTime').innerText = d;
+    });
+  // Date only
+  var datePicker = new MaterialDatetimePicker({
+    datePickerOnly: true
+  }).on('submit', function (d) {
+    document.querySelector('#outputDate').innerText = d;
+  });
+  // Time only
+  var timePicker = new MaterialDatetimePicker({
+    timePickerOnly: true
+  }).on('submit', function (d) {
+    document.querySelector('#outputTime').innerText = d;
+  });
+  // Date & Time picker, time showing by default
+  var dateTimeTimeDefaultPicker = new MaterialDatetimePicker({
+    timePickerDefault: true
+  }).on('submit', function (d) {
+    document.querySelector('#outputDateTimeTimeDefault').innerText = d;
+  });
 
-    var el = document.querySelector('.c-datepicker-btn');
-    el.addEventListener('click', function() {
-      picker.open();
-    }, false);
+  var dateTimePickerBtn = document.querySelector('.c-datetimepicker-btn');
+  var datePickerBtn = document.querySelector('.c-datepicker-btn');
+  var timePickerBtn = document.querySelector('.c-timepicker-btn');
+  var dateTimeTimeDefaultPickerBtn = document.querySelector('.c-datetimepicker-timedefault-btn');
 
+  dateTimePickerBtn.addEventListener('click', function () {
+    dateTimePicker.open();
+  }, false);
+  datePickerBtn.addEventListener('click', function () {
+    datePicker.open();
+  }, false);
+  timePickerBtn.addEventListener('click', function () {
+    timePicker.open();
+  }, false);
+  dateTimeTimeDefaultPickerBtn.addEventListener('click', function () {
+    dateTimeTimeDefaultPicker.open();
+  }, false);
 </script>
 </body>
 </html>

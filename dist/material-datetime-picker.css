@@ -30,6 +30,10 @@
   .c-datepicker--open {
     opacity: 1;
     top: 50%; }
+  .c-datepicker--date-only {
+    min-height: 600px; }
+  .c-datepicker--time-only {
+    min-height: 470px; }
 
 .c-datepicker__header {
   position: relative; }
@@ -42,6 +46,8 @@
   font-size: 12px;
   font-weight: 200;
   letter-spacing: 0.3px; }
+  .c-datepicker--time-only .c-datepicker__header-day {
+    display: none; }
 
 .c-datepicker__header::after {
   content: "";
@@ -50,8 +56,10 @@
 
 .c-datepicker__header-date {
   background: #00bcd4;
-  height: 150px;
+  height: auto;
   padding: 16px 0; }
+  .c-datepicker--date-only .c-datepicker__header-date {
+    padding: 20px 0 16px; }
 
 .rd-month-label {
   height: 56px;
@@ -96,10 +104,18 @@
   color: white;
   visibility: visible; }
 
+.c-datepicker--date-only .c-datepicker--show-time,
+.c-datepicker--time-only .c-datepicker--show-time {
+  display: none; }
+
 .c-datepicker--show-calendar:after {
   content: 'grid_on';
   color: white;
   visibility: visible; }
+
+.c-datepicker--date-only .c-datepicker--show-calendar,
+.c-datepicker--time-only .c-datepicker--show-calendar {
+  display: none; }
 
 .c-datepicker__header-date span {
   display: block;
@@ -111,17 +127,23 @@
   cursor: pointer;
   font-size: 24px;
   opacity: 0.6; }
+  .c-datepicker--time-only .c-datepicker__header-date__month {
+    display: none; }
 
 .c-datepicker__header-date__day {
   cursor: pointer;
   font-size: 64px;
   opacity: 0.6; }
+  .c-datepicker--time-only .c-datepicker__header-date__day {
+    display: none; }
 
 .c-datepicker__header-date__time {
   font-size: 25px;
   opacity: 0.6; }
   .c-datepicker__header-date__time > span {
     display: inline-block; }
+  .c-datepicker--date-only .c-datepicker__header-date__time {
+    display: none; }
 
 .c-datepicker__header-date__hours, .c-datepicker__header-date__minutes {
   cursor: pointer; }
@@ -216,7 +238,7 @@
   opacity: 0.2; }
 
 .c-datepicker__toggle {
-  top: 170px;
+  top: 160px;
   width: 36px;
   height: 30px;
   visibility: hidden;
@@ -467,8 +489,7 @@
   display: none;
   height: 200px;
   margin: -69px 0 0 0;
-  width: 200px;
-  display: none; }
+  width: 200px; }
   .c-datepicker__clock__minutes.active {
     display: block; }
 

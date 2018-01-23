@@ -239,14 +239,24 @@ var defaults$$1 = function defaults$$1() {
       time: prefix + '__time',
       timeList: prefix + '__time-list',
       timeOption: prefix + '__time-option',
-      clockNum: prefix + '__clock__num'
+      clockNum: prefix + '__clock__num',
+      headerDateMinutes: prefix + '__header-date__minutes',
+      uiDisabled: prefix + '__ui-disabled'
     },
     // format to display in the input, or set on the element
     format: 'DD/MM/YY',
     // the container to append the picker
     container: document.body,
     // allow any dates
-    dateValidator: undefined
+    dateValidator: undefined,
+    // Time picker default
+    timePickerDefault: false,
+    // Only time picker
+    timePickerOnly: false,
+    // Only date picker
+    datePickerOnly: false,
+    // Disable minutes selection
+    disableMinutes: false
   };
 };
 
@@ -305,6 +315,24 @@ var DateTimePicker = function (_Events) {
       this.amToggleEl = this.$('.c-datepicker__clock--am');
       this.pmToggleEl = this.$('.c-datepicker__clock--pm');
 
+      // Date picker only
+      if (this.options.datePickerOnly && this.options.timePickerOnly) {
+        // Show both...continue
+      } else if (this.options.datePickerOnly) {
+        // Update UI
+        this.pickerEl.classList.add('c-datepicker--date-only');
+      } else if (this.options.timePickerOnly) {
+        // Update UI
+        this.pickerEl.classList.add('c-datepicker--time-only');
+        // Show timer
+        this.clickShowClock();
+      }
+
+      // Disable minutes?
+      if (this.options.disableMinutes) {
+        this.$('.' + this.options.styles.headerDateMinutes).classList.add(this.options.styles.uiDisabled);
+      }
+
       if (!this.value) {
         // TODO hack
         // set/setDate/setTime need refactoring to have single concerns
@@ -323,6 +351,11 @@ var DateTimePicker = function (_Events) {
 
       this.initializeRome(this.$('.' + this.options.styles.container), this.options.dateValidator);
       this._listenForCloseEvents();
+
+      // If show time picker by default
+      if (this.options.timePickerDefault) {
+        this.clickShowClock();
+      }
 
       this._show();
     }
@@ -371,12 +404,12 @@ var DateTimePicker = function (_Events) {
         }
       };
 
-      window.addEventListener("keydown", this._onWindowKeypress);
+      window.addEventListener('keydown', this._onWindowKeypress);
     }
   }, {
     key: '_stopListeningForCloseEvents',
     value: function _stopListeningForCloseEvents() {
-      window.removeEventListener("keydown", this._onWindowKeypress);
+      window.removeEventListener('keydown', this._onWindowKeypress);
       this._closeHandler = null;
     }
   }, {
@@ -394,9 +427,13 @@ var DateTimePicker = function (_Events) {
       this.$('.js-date-hours').addEventListener('click', function (e) {
         return _this5.showHourClock(e);
       }, false);
-      this.$('.js-date-minutes').addEventListener('click', function (e) {
-        return _this5.showMinuteClock(e);
-      }, false);
+
+      // If minutes not disabled
+      if (!this.options.disableMinutes) {
+        this.$('.js-date-minutes').addEventListener('click', function (e) {
+          return _this5.showMinuteClock(e);
+        }, false);
+      }
 
       this.$('.js-clock-hours').addEventListener('mouseleave', function (e) {
         return _this5.mouseOutHourClock(e);
@@ -574,6 +611,11 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'showMinuteClock',
     value: function showMinuteClock() {
+      // Don't show if disable minutes
+      if (this.options.disableMinutes) {
+        return;
+      }
+
       this.clickShowClock();
       this.$('.js-clock-hours').classList.remove('active');
       this.$('.js-clock-minutes').classList.add('active');

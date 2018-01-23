@@ -27,7 +27,7 @@ $primary: #00bcd4 !default;
   border: 0;
   width: 300px;
   text-align: center;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22);
   border-radius: 2px;
   opacity: 0;
@@ -37,6 +37,14 @@ $primary: #00bcd4 !default;
   &--open {
     opacity: 1;
     top: 50%;
+  }
+
+  &--date-only {
+    min-height: 600px;
+  }
+
+  &--time-only {
+    min-height: 470px;
   }
 }
 
@@ -56,6 +64,10 @@ $primary: #00bcd4 !default;
   font-size: 12px;
   font-weight: 200;
   letter-spacing: 0.3px;
+
+  .c-datepicker--time-only & {
+    display: none;
+  }
 }
 
 .c-datepicker__header::after {
@@ -66,8 +78,12 @@ $primary: #00bcd4 !default;
 
 .c-datepicker__header-date {
   background: $primary;
-  height: 150px;
+  height: auto;
   padding: 16px 0;
+
+  .c-datepicker--date-only & {
+    padding: 20px 0 16px;
+  }
 }
 
 .c-datepicker__month {
@@ -119,16 +135,30 @@ $primary: #00bcd4 !default;
   content: 'chevron_right';
 }
 
-.c-datepicker--show-time:after {
-  content: 'access_time';
-  color: white;
-  visibility: visible;
+.c-datepicker--show-time {
+  &:after {
+    content: 'access_time';
+    color: white;
+    visibility: visible;
+  }
+
+  .c-datepicker--date-only &,
+  .c-datepicker--time-only & {
+    display: none;
+  }
 }
 
-.c-datepicker--show-calendar:after {
-  content: 'grid_on';
-  color: white;
-  visibility: visible;
+.c-datepicker--show-calendar {
+  &:after {
+    content: 'grid_on';
+    color: white;
+    visibility: visible;
+  }
+
+  .c-datepicker--date-only &,
+  .c-datepicker--time-only & {
+    display: none;
+  }
 }
 
 .c-datepicker__header-date span {
@@ -142,12 +172,20 @@ $primary: #00bcd4 !default;
   cursor: pointer;
   font-size: 24px;
   opacity: 0.6;
+
+  .c-datepicker--time-only & {
+    display: none;
+  }
 }
 
 .c-datepicker__header-date__day {
   cursor: pointer;
   font-size: 64px;
   opacity: 0.6;
+
+  .c-datepicker--time-only & {
+    display: none;
+  }
 }
 
 .c-datepicker__header-date__time {
@@ -156,6 +194,10 @@ $primary: #00bcd4 !default;
 
   > span {
     display: inline-block;
+  }
+
+  .c-datepicker--date-only & {
+    display: none;
   }
 }
 
@@ -211,7 +253,7 @@ $primary: #00bcd4 !default;
   height: 35px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .c-datepicker__day-body:hover {
@@ -219,13 +261,13 @@ $primary: #00bcd4 !default;
 }
 
 .c-datepicker__day-head {
-  color: rgba(0,0,0,0.54);
+  color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
   height: 36px;
 }
 
 .c-datepicker__day-head, c-datepicker__day-body {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .modal-btns {
@@ -286,7 +328,7 @@ $primary: #00bcd4 !default;
 }
 
 .c-datepicker__toggle {
-  top: 170px;
+  top: 160px;
   width: 36px;
   height: 30px;
   visibility: hidden;
@@ -316,26 +358,26 @@ $primary: #00bcd4 !default;
 }
 
 @mixin putOnCircle(
-          $nb-items, //Number of items
-          $circle-size, //Parent size
-          $item-size //Item size
-       ) {
-  $half-item:     $item-size / 2;
+  $nb-items, //Number of items
+  $circle-size, //Parent size
+  $item-size //Item size
+) {
+  $half-item: $item-size / 2;
   $half-parent: $circle-size / 2;
 
-  position: relative;               /* [1] */
-  width:  $circle-size;
+  position: relative; /* [1] */
+  width: $circle-size;
   height: $circle-size;
   padding: 0;
   border-radius: 50%;
-  list-style: none;                 /* [2] */
+  list-style: none; /* [2] */
 
   .c-datepicker__clock__num {
     display: block;
     position: absolute;
-    top:  50%;
+    top: 50%;
     left: 50%;
-    width:  $item-size;
+    width: $item-size;
     height: $item-size;
     margin: -$half-item;
     z-index: 98;
@@ -375,7 +417,6 @@ $primary: #00bcd4 !default;
   }
 }
 
-
 .c-datepicker__clock {
   @include putOnCircle(12, 200px, 50px);
   font-size: 14px;
@@ -408,9 +449,8 @@ $primary: #00bcd4 !default;
     height: 0%;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition:
-      width 100ms ease-in-out,
-      height 100ms ease-in-out
+    transition: width 100ms ease-in-out,
+    height 100ms ease-in-out
   }
   &:hover {
     color: white;
@@ -422,8 +462,6 @@ $primary: #00bcd4 !default;
     }
   }
 }
-
-
 
 .c-datepicker__day-body, .c-datepicker__clock__num {
   @extend .u-hover-ball-effect;
@@ -465,7 +503,6 @@ $primary: #00bcd4 !default;
   height: 200px;
   margin: -69px 0 0 0;
   width: 200px;
-  display: none;
   &.active {
     display: block;
   }
