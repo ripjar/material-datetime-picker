@@ -10,123 +10,6 @@ var scrimTemplate = (function (_ref) {
   return "\n<div class=\"" + styles.scrim + "\"></div>\n";
 });
 
-var asyncGenerator = function () {
-  function AwaitValue(value) {
-    this.value = value;
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back;
-
-    function send(key, arg) {
-      return new Promise(function (resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        };
-
-        if (back) {
-          back = back.next = request;
-        } else {
-          front = back = request;
-          resume(key, arg);
-        }
-      });
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg);
-        var value = result.value;
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(function (arg) {
-            resume("next", arg);
-          }, function (arg) {
-            resume("throw", arg);
-          });
-        } else {
-          settle(result.done ? "return" : "normal", result.value);
-        }
-      } catch (err) {
-        settle("throw", err);
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case "return":
-          front.resolve({
-            value: value,
-            done: true
-          });
-          break;
-
-        case "throw":
-          front.reject(value);
-          break;
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          });
-          break;
-      }
-
-      front = front.next;
-
-      if (front) {
-        resume(front.key, front.arg);
-      } else {
-        back = null;
-      }
-    }
-
-    this._invoke = send;
-
-    if (typeof gen.return !== "function") {
-      this.return = undefined;
-    }
-  }
-
-  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-      return this;
-    };
-  }
-
-  AsyncGenerator.prototype.next = function (arg) {
-    return this._invoke("next", arg);
-  };
-
-  AsyncGenerator.prototype.throw = function (arg) {
-    return this._invoke("throw", arg);
-  };
-
-  AsyncGenerator.prototype.return = function (arg) {
-    return this._invoke("return", arg);
-  };
-
-  return {
-    wrap: function (fn) {
-      return function () {
-        return new AsyncGenerator(fn.apply(this, arguments));
-      };
-    },
-    await: function (value) {
-      return new AwaitValue(value);
-    }
-  };
-}();
-
-
-
-
-
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -330,7 +213,7 @@ var Events = function () {
 var ESC_KEY = 27;
 
 var prefix = 'c-datepicker';
-var defaults = function defaults() {
+var defaults$$1 = function defaults$$1() {
   return {
     default: moment().startOf('hour'),
     // allow the user to override all the classes
@@ -356,7 +239,9 @@ var defaults = function defaults() {
       time: prefix + '__time',
       timeList: prefix + '__time-list',
       timeOption: prefix + '__time-option',
-      clockNum: prefix + '__clock__num'
+      clockNum: prefix + '__clock__num',
+      headerDateMinutes: prefix + '__header-date__minutes',
+      uiDisabled: prefix + '__ui-disabled'
     },
     // format to display in the input, or set on the element
     format: 'DD/MM/YY',
@@ -369,7 +254,9 @@ var defaults = function defaults() {
     // Only time picker
     timePickerOnly: false,
     // Only date picker
-    datePickerOnly: false
+    datePickerOnly: false,
+    // Disable minutes selection
+    disableMinutes: false
   };
 };
 
@@ -382,8 +269,8 @@ var DateTimePicker = function (_Events) {
 
     var _this = possibleConstructorReturn(this, (DateTimePicker.__proto__ || Object.getPrototypeOf(DateTimePicker)).call(this));
 
-    var styles = Object.assign(defaults().styles, options.styles);
-    _this.options = Object.assign(defaults(), options);
+    var styles = Object.assign(defaults$$1().styles, options.styles);
+    _this.options = Object.assign(defaults$$1(), options);
     _this.options.styles = styles;
 
     // listen to any event
@@ -439,6 +326,11 @@ var DateTimePicker = function (_Events) {
         this.pickerEl.classList.add('c-datepicker--time-only');
         // Show timer
         this.clickShowClock();
+      }
+
+      // Disable minutes?
+      if (this.options.disableMinutes) {
+        this.$('.' + this.options.styles.headerDateMinutes).classList.add(this.options.styles.uiDisabled);
       }
 
       if (!this.value) {
@@ -535,9 +427,13 @@ var DateTimePicker = function (_Events) {
       this.$('.js-date-hours').addEventListener('click', function (e) {
         return _this5.showHourClock(e);
       }, false);
-      this.$('.js-date-minutes').addEventListener('click', function (e) {
-        return _this5.showMinuteClock(e);
-      }, false);
+
+      // If minutes not disabled
+      if (!this.options.disableMinutes) {
+        this.$('.js-date-minutes').addEventListener('click', function (e) {
+          return _this5.showMinuteClock(e);
+        }, false);
+      }
 
       this.$('.js-clock-hours').addEventListener('mouseleave', function (e) {
         return _this5.mouseOutHourClock(e);
@@ -715,6 +611,11 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'showMinuteClock',
     value: function showMinuteClock() {
+      // Don't show if disable minutes
+      if (this.options.disableMinutes) {
+        return;
+      }
+
       this.clickShowClock();
       this.$('.js-clock-hours').classList.remove('active');
       this.$('.js-clock-minutes').classList.add('active');

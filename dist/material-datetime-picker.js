@@ -4,8 +4,8 @@
 	(global.MaterialDatetimePicker = factory(global.rome,global.moment));
 }(this, (function (rome,moment) { 'use strict';
 
-rome = rome && rome.hasOwnProperty('default') ? rome['default'] : rome;
-moment = moment && moment.hasOwnProperty('default') ? moment['default'] : moment;
+rome = 'default' in rome ? rome['default'] : rome;
+moment = 'default' in moment ? moment['default'] : moment;
 
 var popupTemplate = (function () {
   return "\n<div class=\"c-datepicker\">\n  <a class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker--show-time js-show-clock\" title=\"show time picker\">\n  </a>\n\n  <a class=\"c-datepicker__toggle c-datepicker__toggle--left c-datepicker--show-calendar is-selected js-show-calendar\" title=\"show date picker\">\n  </a>\n\n  <div class=\"c-datepicker__header\">\n    <div class=\"c-datepicker__header-day\">\n      <span class=\"js-day\">Monday</span>\n    </div>\n    <div class=\"c-datepicker__header-date\">\n      <span class=\"c-datepicker__header-date__month js-date-month\"></span>\n      <span class=\"c-datepicker__header-date__day js-date-day\"></span>\n      <span class=\"c-datepicker__header-date__time js-date-time\">\n        <span class=\"c-datepicker__header-date__hours js-date-hours active\">09</span>:<span class=\"c-datepicker__header-date__minutes js-date-minutes\">00</span>\n      </span>\n    </div>\n  </div>\n\n  <div class=\"c-datepicker__calendar\"></div>\n  <div class=\"c-datepicker__clock\">\n    <div class=\"c-datepicker__clock__am-pm-toggle\">\n      <label class=\"c-datepicker__toggle--checked\">\n        <input checked=\"checked\" class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--am\" type=\"radio\" name=\"time-date-toggle\" value=\"AM\" />\n        AM\n      </label>\n\n      <label>\n        <input class=\"c-datepicker__toggle c-datepicker__toggle--right c-datepicker__clock--pm\" type=\"radio\" name=\"time-date-toggle\" value=\"PM\" />\n        PM\n      </label>\n    </div>\n    <div class=\"c-datepicker__mask\"></div>\n    <div class=\"c-datepicker__clock__hours js-clock-hours active\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"3\">3</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"4\">4</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"6\">6</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"7\">7</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"8\">8</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"9\">9</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"11\">11</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">12</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"1\">1</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"2\">2</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n    <div class=\"c-datepicker__clock__minutes js-clock-minutes\">\n      <div class=\"c-datepicker__clock__num\" data-number=\"15\">15</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"20\">20</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"25\">25</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"30\">30</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"35\">35</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"40\">40</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"45\">45</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"50\">50</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"55\">55</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"0\">0</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"5\">5</div>\n      <div class=\"c-datepicker__clock__num\" data-number=\"10\">10</div>\n      <div class=\"c-datepicker__clock-hands\">\n        <div class=\"c-datepicker__hour-hand\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-btns\">\n    <a class=\"c-btn c-btn--flat js-cancel\">Cancel</a>\n    <a class=\"c-btn c-btn--flat js-ok\">OK</a>\n  </div>\n</div>\n";
@@ -15,123 +15,6 @@ var scrimTemplate = (function (_ref) {
   var styles = _ref.styles;
   return "\n<div class=\"" + styles.scrim + "\"></div>\n";
 });
-
-var asyncGenerator = function () {
-  function AwaitValue(value) {
-    this.value = value;
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back;
-
-    function send(key, arg) {
-      return new Promise(function (resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        };
-
-        if (back) {
-          back = back.next = request;
-        } else {
-          front = back = request;
-          resume(key, arg);
-        }
-      });
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg);
-        var value = result.value;
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(function (arg) {
-            resume("next", arg);
-          }, function (arg) {
-            resume("throw", arg);
-          });
-        } else {
-          settle(result.done ? "return" : "normal", result.value);
-        }
-      } catch (err) {
-        settle("throw", err);
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case "return":
-          front.resolve({
-            value: value,
-            done: true
-          });
-          break;
-
-        case "throw":
-          front.reject(value);
-          break;
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          });
-          break;
-      }
-
-      front = front.next;
-
-      if (front) {
-        resume(front.key, front.arg);
-      } else {
-        back = null;
-      }
-    }
-
-    this._invoke = send;
-
-    if (typeof gen.return !== "function") {
-      this.return = undefined;
-    }
-  }
-
-  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-      return this;
-    };
-  }
-
-  AsyncGenerator.prototype.next = function (arg) {
-    return this._invoke("next", arg);
-  };
-
-  AsyncGenerator.prototype.throw = function (arg) {
-    return this._invoke("throw", arg);
-  };
-
-  AsyncGenerator.prototype.return = function (arg) {
-    return this._invoke("return", arg);
-  };
-
-  return {
-    wrap: function (fn) {
-      return function () {
-        return new AsyncGenerator(fn.apply(this, arguments));
-      };
-    },
-    await: function (value) {
-      return new AwaitValue(value);
-    }
-  };
-}();
-
-
-
-
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -336,7 +219,7 @@ var Events = function () {
 var ESC_KEY = 27;
 
 var prefix = 'c-datepicker';
-var defaults = function defaults() {
+var defaults$$1 = function defaults$$1() {
   return {
     default: moment().startOf('hour'),
     // allow the user to override all the classes
@@ -362,7 +245,9 @@ var defaults = function defaults() {
       time: prefix + '__time',
       timeList: prefix + '__time-list',
       timeOption: prefix + '__time-option',
-      clockNum: prefix + '__clock__num'
+      clockNum: prefix + '__clock__num',
+      headerDateMinutes: prefix + '__header-date__minutes',
+      uiDisabled: prefix + '__ui-disabled'
     },
     // format to display in the input, or set on the element
     format: 'DD/MM/YY',
@@ -375,7 +260,9 @@ var defaults = function defaults() {
     // Only time picker
     timePickerOnly: false,
     // Only date picker
-    datePickerOnly: false
+    datePickerOnly: false,
+    // Disable minutes selection
+    disableMinutes: false
   };
 };
 
@@ -388,8 +275,8 @@ var DateTimePicker = function (_Events) {
 
     var _this = possibleConstructorReturn(this, (DateTimePicker.__proto__ || Object.getPrototypeOf(DateTimePicker)).call(this));
 
-    var styles = Object.assign(defaults().styles, options.styles);
-    _this.options = Object.assign(defaults(), options);
+    var styles = Object.assign(defaults$$1().styles, options.styles);
+    _this.options = Object.assign(defaults$$1(), options);
     _this.options.styles = styles;
 
     // listen to any event
@@ -445,6 +332,11 @@ var DateTimePicker = function (_Events) {
         this.pickerEl.classList.add('c-datepicker--time-only');
         // Show timer
         this.clickShowClock();
+      }
+
+      // Disable minutes?
+      if (this.options.disableMinutes) {
+        this.$('.' + this.options.styles.headerDateMinutes).classList.add(this.options.styles.uiDisabled);
       }
 
       if (!this.value) {
@@ -541,9 +433,13 @@ var DateTimePicker = function (_Events) {
       this.$('.js-date-hours').addEventListener('click', function (e) {
         return _this5.showHourClock(e);
       }, false);
-      this.$('.js-date-minutes').addEventListener('click', function (e) {
-        return _this5.showMinuteClock(e);
-      }, false);
+
+      // If minutes not disabled
+      if (!this.options.disableMinutes) {
+        this.$('.js-date-minutes').addEventListener('click', function (e) {
+          return _this5.showMinuteClock(e);
+        }, false);
+      }
 
       this.$('.js-clock-hours').addEventListener('mouseleave', function (e) {
         return _this5.mouseOutHourClock(e);
@@ -721,6 +617,11 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'showMinuteClock',
     value: function showMinuteClock() {
+      // Don't show if disable minutes
+      if (this.options.disableMinutes) {
+        return;
+      }
+
       this.clickShowClock();
       this.$('.js-clock-hours').classList.remove('active');
       this.$('.js-clock-minutes').classList.add('active');
