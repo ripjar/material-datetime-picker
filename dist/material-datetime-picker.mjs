@@ -498,8 +498,9 @@ var DateTimePicker = function (_Events) {
     key: 'onChangeDate',
     value: function onChangeDate(dateString) {
       var newValue = moment(this.value);
+      var _dateString = dateString.split(' ')[0];
 
-      var _dateString$split = dateString.split('-'),
+      var _dateString$split = _dateString.split('-'),
           _dateString$split2 = slicedToArray(_dateString$split, 3),
           year = _dateString$split2[0],
           month = _dateString$split2[1],
