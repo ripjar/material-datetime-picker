@@ -1,3 +1,8 @@
+.c-is-hidden {
+  visibility: hidden !important; }
+  .c-is-hidden::after {
+    display: none; }
+
 .c-scrim {
   position: fixed;
   left: 0;

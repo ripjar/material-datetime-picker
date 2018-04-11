@@ -1,6 +1,13 @@
 $lowlight: #0097a7 !default;
 $primary: #00bcd4 !default;
 
+.c-is-hidden {
+  visibility: hidden !important;
+  &::after {
+    display: none;
+  }
+}
+
 .c-scrim {
   position: fixed;
   left: 0;

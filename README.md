@@ -123,7 +123,11 @@ All options are optional, including the `el`.
         clockNum: 'c-datepicker__clock__num'
     },
     // date range to allow (see rome validator factories)
-    dateValidator: null       
+    dateValidator: null,
+    // additional rome options (see rome options)
+    romeOptions: {
+        time: false
+    }
 }
 ```
 
