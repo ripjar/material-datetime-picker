@@ -254,7 +254,8 @@ var defaults$$1 = function defaults$$1() {
     // allow any dates
     dateValidator: undefined,
     minDate: null,
-    maxDate: null
+    maxDate: null,
+    monthFormat: 'MMMM YYYY'
   };
 };
 
@@ -298,7 +299,8 @@ var DateTimePicker = function (_Events) {
         dateValidator: validator,
         initialValue: this.value,
         min: this.options.minDate,
-        max: this.options.maxDate
+        max: this.options.maxDate,
+        monthFormat: this.options.monthFormat
       }).on('data', onData);
     }
 
