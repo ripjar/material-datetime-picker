@@ -246,7 +246,10 @@ var defaults$$1 = function defaults$$1() {
     // the container to append the picker
     container: document.body,
     // allow any dates
-    dateValidator: undefined
+    dateValidator: undefined,
+    minDate: null,
+    maxDate: null,
+    monthFormat: 'MMMM YYYY'
   };
 };
 
@@ -288,7 +291,10 @@ var DateTimePicker = function (_Events) {
         styles: this.options.styles,
         time: false,
         dateValidator: validator,
-        initialValue: this.value
+        initialValue: this.value,
+        min: this.options.minDate,
+        max: this.options.maxDate,
+        monthFormat: this.options.monthFormat
       }).on('data', onData);
     }
 
@@ -371,12 +377,12 @@ var DateTimePicker = function (_Events) {
         }
       };
 
-      window.addEventListener("keydown", this._onWindowKeypress);
+      window.addEventListener('keydown', this._onWindowKeypress);
     }
   }, {
     key: '_stopListeningForCloseEvents',
     value: function _stopListeningForCloseEvents() {
-      window.removeEventListener("keydown", this._onWindowKeypress);
+      window.removeEventListener('keydown', this._onWindowKeypress);
       this._closeHandler = null;
     }
   }, {
