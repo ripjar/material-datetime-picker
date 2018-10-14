@@ -73,7 +73,13 @@
 
   <script>
 
-    var picker = new MaterialDatetimePicker({})
+    var  START_OF_YEAR = moment().startOf('year').toDate();
+    var  END_OF_YEAR = moment().endOf('year').toDate();
+
+    var picker = new MaterialDatetimePicker({
+      minDate: START_OF_YEAR,
+      maxDate: END_OF_YEARtrue
+    })
       .on('submit', function(d) {
         output.innerText = d;
       });
